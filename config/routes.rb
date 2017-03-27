@@ -1,10 +1,14 @@
 Rails.application.routes.draw do
+
+
   root "users#new"
 
   get "/login" => "sessions#new"
 
   resources :users, except: [:index]
   resources :sessions, only: [:create, :destroy]
+
+  resources :images, only: [:show, :create, :destroy]
 
   resources :profiles
 

@@ -17,9 +17,24 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @images = Picture.all
   end
 
   def edit
+  end
+
+  def image
+    newimage = Picture.new(user_id:session[:user_id], image:params[:image])
+    if newimage.valid?
+      if newimage.image.nil?
+        flash[:message] = ["upload value was nil :-("]
+      else
+      newimage.save
+      end
+    else
+      flash[:message] = ["upload didn't work :-("]
+    end
+    redirect_to "/users/#{session[:user_id]}"
   end
 
   protected
