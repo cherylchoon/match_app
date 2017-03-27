@@ -20,12 +20,13 @@ class ProfilesController < ApplicationController
   end
 
   def update
-    profile = Profile.update_attributes!(profile_params)
-    if profile.save
+    @profile = Profile.find(params[:id])
+    @profile.update(profile_params)
+    if @profile.save
       flash[:notice] = "You have successfully upated your profile!"
       redirect_to "/users/#{session[:user_id]}"
     else
-      flash[:errors] = profile.errors.full_messages
+      flash[:errors] = @profile.errors.full_messages
       redirect_to :back
     end
   end
@@ -37,6 +38,6 @@ class ProfilesController < ApplicationController
 
   private
   def profile_params
-    params.require(:profile).permit(:height, :body_type, :status, :has_kids, :wants_kids, :education, :smoking, :drinking, :religion, :salary, :interests, :specifications, :essay)
+    params.require(:profile).permit(:height_feet, :height_inches, :body_type, :status, :has_kids, :wants_kids, :education, :smoking, :drinking, :religion, :salary, :ethnicity, :interests, :specifications, :essay)
   end
 end

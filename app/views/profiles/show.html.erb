@@ -1,8 +1,10 @@
+<a href="/users/<%= @user.id %>">Return to Dashboard</a>
+
 <h1>Your Profile, <%= @user.first_name %></h1>
 
 <hr>
 
-<h5>Height: <%= @profile.height%></h5>
+<h5>Height: <%= @profile.height_feet%>'<%= @profile.height_inches%>"</h5>
 <h5>Body Type: <%= @profile.body_type%></h5>
 <h5>Relationship Status: <%= @profile.status%></h5>
 <h5>Have Kids?: <%= @profile.has_kids%></h5>
@@ -10,9 +12,9 @@
 <h5>Education: <%= @profile.education%></h5>
 <h5>Smoker?: <%= @profile.smoking%></h5>
 <h5>Drinker?: <%= @profile.drinking%></h5>
-<h5>Ethnicity: </h5>
+<h5>Ethnicity: <%= @profile.ethnicity%></h5>
 <h5>Religion: <%= @profile.religion%></h5>
-<h5>Current Salary Range: Around $<%= @profile.salary%> per year</h5>
+<h5>Current Salary Range: Around <%= @profile.salary%> per year</h5>
 <h5>Interests: <%= @profile.interests%></h5>
 <h5>Specifications: <%= @profile.specifications%></h5>
 <h5>Essay: <%= @profile.essay%></h5>

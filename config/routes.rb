@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   resources :users, except: [:index]
   resources :sessions, only: [:create, :destroy]
 
+  resources :images, only: [:show, :create, :destroy]
+
   resources :profiles
 
   # The priority is based upon order of creation: first created -> highest priority.

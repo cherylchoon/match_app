@@ -1,0 +1,37 @@
+<div class="col-md-4">
+  <h4>Hello, <%= @user.first_name %></h4>
+
+  <h3>Your images</h3>
+
+  <% @images.each do |img|%>
+
+    <img src="<%=img.image_url(:thumb)%>" alt="logo.png">
+
+<!--     <br>
+<img src="<%=img.image_url(:tiny)%>" alt="logo.png">
+<br>
+<img src="<%=img.image_url(:profile)%>" alt="logo.png"> -->
+
+  <%end%>
+
+
+  <% if flash[:message] %>
+    <% flash[:message].each do |msg| %>
+      <p><h3><i><%=msg%></h3></i></p>
+    <%end%>
+  <%end%>
+
+
+
+<br><br>
+
+  <p>Add a new image to your profile</p>
+
+
+  <form action="/images" method='post' enctype="multipart/form-data">
+    <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+    <input type="file" name="image" accept="image/*">
+    <input type="submit" value='upload'>
+  </form>
+
+</div>
