@@ -20,6 +20,28 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @user = User.find(params[:id])
+    if session[:user_id] != @user.id
+      flash[:errors] = ["You don't have permission to access this page."]
+      redirect_to root_path
+    end
+  end
+
+  def update
+    @user = User.find(params[:id])
+  end
+
+  def destroy
+  end
+
+  def deactivate
+    @user = User.find(params[:id])
+    if session[:user_id] != @user.id
+      redirect_to :back
+    else
+      @user.update(is_active: false)
+      redirect_to login_path
+    end
   end
 
   protected

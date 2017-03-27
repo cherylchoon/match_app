@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170327002823) do
+ActiveRecord::Schema.define(version: 20170327205211) do
 
   create_table "ethnicities", force: :cascade do |t|
     t.string   "type"
@@ -24,6 +24,18 @@ ActiveRecord::Schema.define(version: 20170327002823) do
     t.integer "ethnicity_id", null: false
     t.integer "profile_id",   null: false
   end
+
+  create_table "messages", force: :cascade do |t|
+    t.integer  "receiver_id"
+    t.integer  "sender_id"
+    t.text     "content"
+    t.string   "title"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "messages", ["receiver_id"], name: "index_messages_on_receiver_id"
+  add_index "messages", ["sender_id"], name: "index_messages_on_sender_id"
 
   create_table "profiles", force: :cascade do |t|
     t.integer  "height"
@@ -54,8 +66,9 @@ ActiveRecord::Schema.define(version: 20170327002823) do
     t.integer  "zip_code"
     t.string   "gender"
     t.date     "birthday"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.boolean  "is_active",       default: true
   end
 
 end
