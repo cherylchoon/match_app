@@ -1,8 +1,13 @@
 source 'https://rubygems.org'
 
+gem 'carrierwave', '~> 1.0'
+gem 'rmagick', '~> 2.15', '>= 2.15.4'
+
 gem 'hirb'
 gem 'rails-footnotes'
 gem 'validates_timeliness', '~> 4.0'
+
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.8'
 # Use sqlite3 as the database for Active Record

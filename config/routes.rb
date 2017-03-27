@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
+
+  resources :images, only: [:show, :create, :destroy]
+
   root "users#new"
 
   get "/login" => "sessions#new"
+
+  post "addimage" => "users#image"
 
   resources :users, except: [:index]
   resources :sessions, only: [:create, :destroy]
