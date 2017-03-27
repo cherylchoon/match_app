@@ -1,5 +1,3 @@
+
 == README
-
 Before running `bundle install` run `sudo apt-get install libmagickwand-dev`
-
-<tt>rake doc:app</tt>.

@@ -1,6 +1,11 @@
+
+<% if flash[:notice] %>
+  <%= flash[:notice] %>
+<% end %>
+
 <div class="col-md-4">
   <h4>Hello, <%= @user.first_name %></h4>
-
-  <br><br>
-
   <a href="/images/<%=session[:user_id]%>">Your pictures</a>
+</div>
+
+<a href="/profiles/<%= @user.id %>">View Your Profile</a>

@@ -1,15 +1,16 @@
 Rails.application.routes.draw do
 
-  resources :images, only: [:show, :create, :destroy]
 
   root "users#new"
 
   get "/login" => "sessions#new"
 
-  post "addimage" => "users#image"
-
   resources :users, except: [:index]
   resources :sessions, only: [:create, :destroy]
+
+  resources :images, only: [:show, :create, :destroy]
+
+  resources :profiles
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

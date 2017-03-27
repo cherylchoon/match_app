@@ -1,0 +1,104 @@
+<a href="/users/<%= @user.id %>">Return to Dashboard</a>
+
+<h1>Edit Your Profile</h1>
+
+<form action="/profiles/<%= @user.id%>" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="hidden" name="_method" value="patch" />
+
+  <label>Height:</label><br>
+  <input type="text" name="profile[height]" placeholder="<%= @profile.height %>"><br>
+  <label>Body Type:</label><br>
+  <select name="profile[body_type]">
+    <option value="slender">slender</option>
+    <option value="average">average</option>
+    <option value="athletic">athletic/toned</option>
+    <option value="heavyset">heavyset</option>
+  </select><br>
+  <label>Relationship Status:</label><br>
+  <select name="profile[status]">
+    <option value="never_married">never married</option>
+    <option value="separated">currently separated</option>
+    <option value="divorced">divorced</option>
+    <option value="widow">widow/widower</option>
+  </select><br>
+  <label>Do You Have Kids?</label><br>
+  <select name="profile[has_kids]">
+    <option value="no">No</option>
+    <option value="yes_away">Yes, but they live away from home</option>
+    <option value="yes_sometimes">Yes, sometimes live at home</option>
+    <option value="yes_athome">Yes, and they live at home</option>
+  </select><br>
+  <label>Do You Want Kids?</label><br>
+  <select name="profile[wants_kids]">
+    <option value="no">No</option>
+    <option value="definitely">Definitely</option>
+    <option value="someday">Someday</option>
+  </select><br>
+  <label>Highest Level of Education:</label><br>
+  <select name="profile[education]">
+    <option value="high_school">high school or GED</option>
+    <option value="some_college">some college</option>
+    <option value="associates">Associate's degree</option>
+    <option value="bachelors">Bachelor's degree</option>
+    <option value="masters">Master's degree</option>
+    <option value="doctorate">PhD or other doctoral degree</option>
+  </select><br>
+  <label>Do You Smoke?</label><br>
+  <select name="profile[smoking]">
+    <option value="no">No</option>
+    <option value="yes_occasionally">Yes, occasionally</option>
+    <option value="yes_daily">Yes, daily</option>
+    <option value="yes_quitting">Yes, but I'm trying to quit</option>
+  </select><br>
+  <label>Do You Drink?</label><br>
+  <select name="profile[drinking]">
+    <option value="no">Never</option>
+    <option value="yes_socially">Yes, socially</option>
+    <option value="yes_moderately">Yes, moderately</option>
+    <option value="yes_regularly">Yes, regularly</option>
+  </select><br>
+  <label>Your Ethnicity</label><br>
+    <p><i>Please select the one with which you most closely identify...</i></p>
+    <input type="checkbox" name="ethnicity[white]" value="White/Caucasian"> White/Caucasian
+    <input type="checkbox" name="ethnicity[black]" value="Black/African-American"> Black/African-American
+    <input type="checkbox" name="ethnicity[hispanic]" value="Latino/Hispanic"> Latino/Hispanic <br>
+    <input type="checkbox" name="ethnicity[asian]" value="Asian/Asian-American"> Asian/Asian-American
+    <input type="checkbox" name="ethnicity[native_american]" value="Native American"> Native American
+    <input type="checkbox" name="ethnicity[mid-eastern]" value="Middle Eastern"> Middle Eastern <br>
+    <input type="checkbox" name="ethnicity[pacific_islander]" value="Pacific Islander"> Pacific Islander
+    <input type="checkbox" name="ethnicity[east_indian]" value="East Indian"> East Indian
+    <input type="checkbox" name="ethnicity[other]" value="Other"> Other <br>
+  <label>Religion:</label><br>
+      <p><i>Select only one! You can always elaborate in your essay...</i></p>
+      <input type="checkbox" name="profile[religion]" value="Christian-other"> Christian-other
+      <input type="checkbox" name="profile[religion]" value="Christian-Catholic"> Christian-Catholic
+      <input type="checkbox" name="profile[religion]" value="Christian-protestant"> Christian-protestant
+      <input type="checkbox" name="profile[religion]" value="Christian-LDS"> Christian-LDS <br>
+      <input type="checkbox" name="profile[religion]" value="Muslim/Islam"> Muslim/Islam
+      <input type="checkbox" name="profile[religion]" value="Spiritual but not religious"> Spiritual, but not religious
+      <input type="checkbox" name="profile[religion]" value="Jewish"> Jewish
+      <input type="checkbox" name="profile[religion]" value="Buddist/Taoist"> Buddist/Taoist <br>
+      <input type="checkbox" name="profile[religion]" value="Hindu"> Hindu
+      <input type="checkbox" name="profile[religion]" value="Adventist"> Adventist
+      <input type="checkbox" name="profile[religion]" value="Athiest"> Atheist
+      <input type="checkbox" name="profile[religion]" value="other"> Other
+  </select><br>
+  <label>Current Salary Range:</label><br>
+  <select name="profile[salary]">
+    <option value="25000">$25,000 or below</option>
+    <option value="50000">$26,000-$50,000 per year</option>
+    <option value="100000">$51,000-$99,000 per year</option>
+    <option value="125000">$100,000-$125,000 per year</option>
+    <option value="150000">$126,000 per year or above</option>
+  </select>
+  <br>
+  <label>Interests:</label><br>
+  <textarea name="profile[interests]" placeholder="<%= @profile.interests %>"></textarea><br>
+  <label>Looking for Something Specific?</label><br>
+  <textarea name="profile[specifications]" placeholder="<%= @profile.specifications %>"></textarea><br>
+  <label>Essay About Yourself:</label><br>
+  <textarea name="profile[essay]" placeholder="<%= @profile.essay %>"></textarea><br>
+
+  <input type="submit" value="Update">
+</form>
