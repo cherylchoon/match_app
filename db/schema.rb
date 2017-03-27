@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170327002823) do
+ActiveRecord::Schema.define(version: 20170327181726) do
 
   create_table "ethnicities", force: :cascade do |t|
     t.string   "type"
@@ -26,7 +26,8 @@ ActiveRecord::Schema.define(version: 20170327002823) do
   end
 
   create_table "profiles", force: :cascade do |t|
-    t.integer  "height"
+    t.integer  "height_feet"
+    t.integer  "height_inches"
     t.string   "body_type"
     t.string   "status"
     t.string   "has_kids"
@@ -34,14 +35,16 @@ ActiveRecord::Schema.define(version: 20170327002823) do
     t.string   "education"
     t.string   "smoking"
     t.string   "drinking"
+    t.string   "ethnicity"
     t.string   "religion"
-    t.integer  "salary"
+    t.string   "salary"
     t.text     "interests"
     t.text     "specifications"
     t.text     "essay"
+    t.string   "image"
+    t.integer  "user_id"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
-    t.integer  "user_id"
   end
 
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id"
