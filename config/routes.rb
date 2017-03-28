@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
   resources :images, only: [:show, :create, :destroy]
 
+  get "images/destroy/:id" => "images#destroy"
+
   resources :profiles
 
   # The priority is based upon order of creation: first created -> highest priority.

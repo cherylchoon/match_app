@@ -8,6 +8,7 @@ class SessionsController < ApplicationController
     @user = User.find_by_email(params[:email])
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
+      @user.loggedin = true
       redirect_to user_path(@user.id)
     else
       if !@user
@@ -20,6 +21,8 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+    @user = User.find(session[:user_id])
+    @user.loggedin = false
     session.clear
     redirect_to login_path
   end

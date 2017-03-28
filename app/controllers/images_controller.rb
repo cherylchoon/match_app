@@ -20,7 +20,11 @@ class ImagesController < ApplicationController
       flash[:message] = ["upload didn't work :-("]
     end
     redirect_to :back
-
-
   end
+
+  def destroy
+    img = Picture.find(params[:id]).destroy
+    redirect_to :back
+  end
+
 end
