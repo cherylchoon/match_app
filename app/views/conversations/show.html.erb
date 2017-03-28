@@ -1,0 +1,16 @@
+<div class="col-md-8">
+  <h4>Conversation with <%= "#{@conversation.with(current_user).first_name} #{@conversation.with(current_user).last_name}" %></h4>
+
+  <div id="conversation-main">
+    <div id="conversation-body">
+      <%= render @conversation.personal_messages %>
+    </div>
+
+    <%= form_for @personal_message do |f| %>
+      <%= hidden_field_tag 'conversation_id', @conversation.id %>
+      <%= f.text_area(:content, cols: 85, rows: 2) %>
+
+      <%= f.submit "Send", class: 'btn btn-outline-info float-right'%>
+    <% end %>
+  </div>
+</div>
