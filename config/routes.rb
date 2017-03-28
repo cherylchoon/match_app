@@ -1,16 +1,16 @@
 Rails.application.routes.draw do
 
-
-  get 'preferences/new'
-
-  root "users#new"
+  root "sessions#index"
 
   get "/login" => "sessions#new"
+  put "/deactivate/:id" => "users#deactivate"
 
   resources :users, except: [:index]
   resources :sessions, only: [:create, :destroy]
 
   resources :images, only: [:show, :create, :destroy]
+
+  get "images/destroy/:id" => "images#destroy"
 
   resources :profiles
   resources :preferences
