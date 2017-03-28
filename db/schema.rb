@@ -11,17 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170327002823) do
+ActiveRecord::Schema.define(version: 20170328152819) do
 
-    create_table "pictures", force: :cascade do |t|
-      t.integer  "user_id"
-      t.string   "image"
-      t.datetime "created_at", null: false
-      t.datetime "updated_at", null: false
-      t.string   "caption"
-    end
+  create_table "conversations", force: :cascade do |t|
+    t.integer  "sender_id"
+    t.integer  "receiver_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
-    add_index "pictures", ["user_id"], name: "index_pictures_on_user_id"
+  add_index "conversations", ["sender_id", "receiver_id"], name: "index_conversations_on_sender_id_and_receiver_id", unique: true
 
   create_table "ethnicities", force: :cascade do |t|
     t.string   "type"
@@ -46,6 +45,27 @@ ActiveRecord::Schema.define(version: 20170327002823) do
 
   add_index "messages", ["receiver_id"], name: "index_messages_on_receiver_id"
   add_index "messages", ["sender_id"], name: "index_messages_on_sender_id"
+
+  create_table "personal_messages", force: :cascade do |t|
+    t.text     "content"
+    t.integer  "conversation_id"
+    t.integer  "user_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "personal_messages", ["conversation_id"], name: "index_personal_messages_on_conversation_id"
+  add_index "personal_messages", ["user_id"], name: "index_personal_messages_on_user_id"
+
+  create_table "pictures", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "caption"
+  end
+
+  add_index "pictures", ["user_id"], name: "index_pictures_on_user_id"
 
   create_table "profiles", force: :cascade do |t|
     t.integer  "height_feet"

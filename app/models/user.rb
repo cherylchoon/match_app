@@ -1,12 +1,15 @@
 class User < ActiveRecord::Base
   has_secure_password
-  has_many :messages
+  has_many :personal_messages, dependent: :destroy
 
-  has_many :received_messages, class_name: 'Message', foreign_key: 'receiver_id'
-  has_many :sent_messages, class_name: 'Message', foreign_key: 'sender_id'
+  has_many :authored_conversations, class_name: 'Conversation', foreign_key: 'sender_id'
+  has_many :received_conversations, class_name: 'Conversation', foreign_key: 'receiver_id'
 
-  has_many :receivers, -> { distinct }, class_name: 'User', through: 'sent_messages'
-  has_many :senders, -> { distinct }, class_name: 'User', through: 'received_messages'
+  # has_many :received_messages, class_name: 'PersonalMessage', foreign_key: 'receiver_id'
+  # has_many :sent_messages, class_name: 'PersonalMessage', foreign_key: 'sender_id'
+
+  has_many :receivers, -> { distinct }, class_name: 'User', through: 'authored_conversations'
+  has_many :senders, -> { distinct }, class_name: 'User', through: 'received_conversations'
 
   EMAIL_REGEX = /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]+)\z/i
 

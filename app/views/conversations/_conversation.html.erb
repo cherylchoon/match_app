@@ -1,0 +1,8 @@
+<div>
+  <a href="/users/<%= conversation.with(current_user).id %>"><%= "#{conversation.with(current_user).first_name} #{conversation.with(current_user).last_name}" %></a>
+  <br>
+  <em><%= conversation.personal_messages.last.content.truncate(50) %></em>
+  <br>
+  <%= link_to 'View conversation', conversation_path(conversation) %>
+  <hr>
+</div>

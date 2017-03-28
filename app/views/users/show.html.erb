@@ -1,10 +1,14 @@
-
 <% if flash[:notice] %>
   <%= flash[:notice] %>
 <% end %>
 
 <div class="col-md-4">
-  <h4>Hello, <%= @user.first_name %></h4>
+  <h4><%= "#{@user.first_name} #{@user.last_name}" %></h4>
+  <p>--- Profile Pic Here ----</p>
+  <% if @user.id != session[:user_id] %>
+    <%= link_to "Send a message", new_personal_message_path(receiver_id: @user.id) %>
+  <% end %>
+  <br>
   <a href="/images/<%=session[:user_id]%>">Your pictures</a>
 </div>
 
