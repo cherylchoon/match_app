@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
   has_many :likes, class_name:'User', through: 'user_liked'
   has_many :likers, class_name:'User', through: 'user_liker'
 
+  has_many :receivers, -> { distinct }, class_name: 'User', through: 'sent_messages'
+  has_many :senders, -> { distinct }, class_name: 'User', through: 'received_messages'
 
   EMAIL_REGEX = /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]+)\z/i
 

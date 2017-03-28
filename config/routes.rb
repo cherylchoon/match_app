@@ -1,9 +1,8 @@
 Rails.application.routes.draw do
-
-
-  root "users#new"
+  root "sessions#index"
 
   get "/login" => "sessions#new"
+  put "/deactivate/:id" => "users#deactivate"
 
   resources :users, except: [:index]
   resources :sessions, only: [:create, :destroy]

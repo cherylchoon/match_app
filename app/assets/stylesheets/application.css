@@ -13,7 +13,6 @@
  *= require_tree .
  *= require_self
  */
-
-.navbar {
-   margin-bottom: 20px;
- }
+#secondary-navbar {
+  margin-bottom: 20px;
+}
