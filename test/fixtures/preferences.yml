@@ -1,0 +1,35 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  min_height_feet: 1
+  min_height_inches: 1
+  max_height_feet: 1
+  max_height_inches: 1
+  body_type: MyString
+  status: MyString
+  has_kids: MyString
+  wants_kids: MyString
+  education: MyString
+  smoking: MyString
+  drinking: MyString
+  salary: MyString
+  specifications: MyText
+  essay: MyText
+  user_id: 
+
+two:
+  min_height_feet: 1
+  min_height_inches: 1
+  max_height_feet: 1
+  max_height_inches: 1
+  body_type: MyString
+  status: MyString
+  has_kids: MyString
+  wants_kids: MyString
+  education: MyString
+  smoking: MyString
+  drinking: MyString
+  salary: MyString
+  specifications: MyText
+  essay: MyText
+  user_id: 

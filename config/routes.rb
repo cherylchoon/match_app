@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
 
+  get 'preferences/new'
+
   root "users#new"
 
   get "/login" => "sessions#new"
@@ -11,6 +13,7 @@ Rails.application.routes.draw do
   resources :images, only: [:show, :create, :destroy]
 
   resources :profiles
+  resources :preferences
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

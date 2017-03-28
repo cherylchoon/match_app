@@ -1,0 +1,29 @@
+
+<h2>Your Preferences</h2>
+<hr>
+
+<h5>Height: From <%= @preferences.min_height_feet%>'<%= @preferences.min_height_inches%>" to <%= @preferences.max_height_feet%>'<%= @preferences.max_height_inches%>"</h5>
+<h5>Body Type: <%= @preferences.body_type%></h5>
+<h5>Relationship Status: <%= @preferences.status%></h5>
+<h5>Have Kids?: <%= @preferences.has_kids%></h5>
+<h5>Want Kids?: <%= @preferences.wants_kids%></h5>
+<h5>Education: <%= @preferences.education%></h5>
+<h5>Smoker?: <%= @preferences.smoking%></h5>
+<h5>Drinker?: <%= @preferences.drinking%></h5>
+<h5>Ethnicity: </h5>
+<% @preferences.ethnicities.each do |e| %>
+  <h5> -- <%= e.name %></h5>
+<% end %>
+<h5>Religions:</h5>
+<% @preferences.religions.each do |r| %>
+    <h5> ** <%= r.name %></h5>
+<% end %>
+<h5>Current Salary Range: Around <%= @preferences.salary%> per year</h5>
+<h5>Interests: </h5>
+<% @preferences.interests.each do |i| %>
+  <h5> + <%= i.name %></h5>
+<% end %>
+
+<hr>
+
+<a href="#">Edit Your Preferences</a>
