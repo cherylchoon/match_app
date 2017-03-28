@@ -1,5 +1,6 @@
 class ProfilesController < ApplicationController
   def new
+    @profile = Profile.new
   end
 
   def create
@@ -38,6 +39,6 @@ class ProfilesController < ApplicationController
 
   private
   def profile_params
-    params.require(:profile).permit(:height_feet, :height_inches, :body_type, :status, :has_kids, :wants_kids, :education, :smoking, :drinking, :religion, :salary, :ethnicity, :interests, :specifications, :essay)
+    params.require(:profile).permit(:height_feet, :height_inches, :body_type, :status, :has_kids, :wants_kids, :education, :smoking, :drinking, :salary, :specifications, :essay, ethnicity_ids:[], religion_ids:[], interest_ids:[])
   end
 end

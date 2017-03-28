@@ -1,125 +1,86 @@
-<h1>Complete Your Profile</h1>
-<form action="/profiles" method="post" enctype="multipart/form-data">
-  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-  <label>Height:</label><br>
-  <label>Inches:</label>
-  <select name="profile[height_feet]">
-    <option value="4">4</option>
-    <option value="5">5</option>
-    <option value="6">6</option>
-    <option value="7">7</option>
-  </select>
-  <label>Inches:</label>
-  <select name="profile[height_inches]">
-    <option value="0">0</option>
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="4">4</option>
-    <option value="5">5</option>
-    <option value="6">6</option>
-    <option value="7">7</option>
-    <option value="8">8</option>
-    <option value="9">9</option>
-    <option value="10">10</option>
-    <option value="11">11</option>
-  </select>
-  <br>
-  <label>Body Type:</label><br>
-  <select name="profile[body_type]">
-    <option value="slender">slender</option>
-    <option value="average">average</option>
-    <option value="athletic">athletic/toned</option>
-    <option value="heavyset">heavyset</option>
-  </select><br>
-  <label>Relationship Status:</label><br>
-  <select name="profile[status]">
-    <option value="never married">never married</option>
-    <option value="separated">currently separated</option>
-    <option value="divorced">divorced</option>
-    <option value="widow">widow/widower</option>
-  </select><br>
-  <label>Do You Have Kids?</label><br>
-  <select name="profile[has_kids]">
-    <option value="no">No</option>
-    <option value="Yes, but they live away">Yes, but they live away from home</option>
-    <option value="Yes, sometimes live at home">Yes, sometimes live at home</option>
-    <option value="Yes, and they live at home">Yes, and they live at home</option>
-  </select><br>
-  <label>Do You Want Kids?</label><br>
-  <select name="profile[wants_kids]">
-    <option value="No">No</option>
-    <option value="Definitely">Definitely</option>
-    <option value="Someday">Someday</option>
-  </select><br>
-  <label>Highest Level of Education:</label><br>
-  <select name="profile[education]">
-    <option value="high school or GED">high school or GED</option>
-    <option value="some college">some college</option>
-    <option value="Associate's degree">Associate's degree</option>
-    <option value="Bachelor's degree">Bachelor's degree</option>
-    <option value="Master's degree">Master's degree</option>
-    <option value="PhD or other doctoratal degree">PhD or other doctoral degree</option>
-  </select><br>
-  <label>Do You Smoke?</label><br>
-  <select name="profile[smoking]">
-    <option value="No">No</option>
-    <option value="Yes, occasionally">Yes, occasionally</option>
-    <option value="Yes, daily">Yes, daily</option>
-    <option value="Yes, but I'm trying to quit">Yes, but I'm trying to quit</option>
-  </select><br>
-  <label>Do You Drink?</label><br>
-  <select name="profile[drinking]">
-    <option value="No">Never</option>
-    <option value="Yes, socially">Yes, socially</option>
-    <option value="Yes, moderately">Yes, moderately</option>
-    <option value="Yes, regularly">Yes, regularly</option>
-  </select><br>
-  <label>Your Ethnicity</label><br>
-    <p><i>Please select the one with which you most closely identify...</i></p>
-    <input type="radio" name="profile[ethnicity]" value="White/Caucasian"> White/Caucasian
-    <input type="radio" name="profile[ethnicity]" value="Black/African-American"> Black/African-American
-    <input type="radio" name="profile[ethnicity]" value="Latino/Hispanic"> Latino/Hispanic
-    <input type="radio" name="profile[ethnicity]" value="Asian/Asian-American"> Asian/Asian-American <br>
-    <input type="radio" name="profile[ethnicity]" value="Native American"> Native American
-    <input type="radio" name="profile[ethnicity]" value="Middle Eastern"> Middle Eastern
-    <input type="radio" name="profile[ethnicity]" value="Pacific Islander"> Pacific Islander <br>
-    <input type="radio" name="profile[ethnicity]" value="East Indian"> East Indian
-    <input type="radio" name="profile[ethnicity]" value="Other"> Other
-    <input type="radio" name="profile[ethnicity]" value="No Answer"> I'd rather not say... <br>
-  <label>Religion:</label><br>
-      <p><i>Select only one! You can always elaborate in your essay...</i></p>
-      <input type="radio" name="profile[religion]" value="Christian-other"> Christian-other
-      <input type="radio" name="profile[religion]" value="Christian-Catholic"> Christian-Catholic
-      <input type="radio" name="profile[religion]" value="Christian-protestant"> Christian-protestant
-      <input type="radio" name="profile[religion]" value="Christian-LDS"> Christian-LDS <br>
-      <input type="radio" name="profile[religion]" value="Muslim/Islam"> Muslim/Islam
-      <input type="radio" name="profile[religion]" value="Spiritual but not religious"> Spiritual, but not religious
-      <input type="radio" name="profile[religion]" value="Jewish"> Jewish
-      <input type="radio" name="profile[religion]" value="Buddist/Taoist"> Buddist/Taoist <br>
-      <input type="radio" name="profile[religion]" value="Hindu"> Hindu
-      <input type="radio" name="profile[religion]" value="Adventist"> Adventist
-      <input type="radio" name="profile[religion]" value="Athiest"> Atheist
-      <input type="radio" name="profile[religion]" value="other"> Other
-  </select><br>
-  <label>Current Salary Range:</label><br>
-  <select name="profile[salary]">
-    <option value="$25,000 or below">$25,000 or below</option>
-    <option value="$26,000-$50,000">$26,000-$50,000 per year</option>
-    <option value="$51,000-$99,000">$51,000-$99,000 per year</option>
-    <option value="$100,000-$125,000">$100,000-$125,000 per year</option>
-    <option value="$126,000 or more">$126,000 per year or above</option>
-  </select>
-  <br>
-  <label>Interests:</label><br>
-  <textarea name="profile[interests]"></textarea><br>
-  <label>Looking for Something Specific?</label><br>
-  <textarea name="profile[specifications]"></textarea><br>
-  <label>Essay About Yourself:</label><br>
-  <textarea name="profile[essay]"></textarea><br>
+<div class="col-md-4">
+  <%= form_for @profile do |f| %>
 
-  <label>Upload a picture for your profile:</label><br>
-  <input type="file" name="image" accept="image/*"><br>
+    <div class="form-group">
+      <%= f.label "Height (feet):" %>
+      <%= f.select :height_feet, options_for_select(Choices['height_feet']) %>
+    </div>
+    <div class="form-group">
+      <%= f.label "Height (inches):" %>
+      <%= f.select :height_inches, options_for_select(Choices['height_inches']) %>
+    </div>
 
-  <input type="submit" value="Find Love!">
-</form>
+    <div class="form-group">
+      <%= f.label "Body Type:" %>
+      <%= f.select :body_type, options_for_select(Choices['body_type']), {}, class: "float-right" %>
+    </div>
+    <div class="form-group">
+      <%= f.label "Relationship Status:" %>
+      <%= f.select :status, options_for_select(Choices['relationship_status']), {}, class: "float-right" %>
+    </div>
+    <div class="form-group">
+      <%= f.label "Do you have kids?" %>
+      <%= f.select :has_kids, options_for_select(Choices['has_kids']) %>
+    </div>
+    <div class="form-group">
+      <%= f.label "Do you want kids?" %>
+      <%= f.select :wants_kids, options_for_select(Choices['wants_kids']) %>
+    </div>
+    <div class="form-group">
+      <%= f.label "Highest level of education:" %>
+      <%= f.select :education, options_for_select(Choices['education']) %>
+    </div>
+    <div class="form-group">
+      <%= f.label "Are you a smoker?" %>
+      <%= f.select :smoking, options_for_select(Choices['is_smoker']) %>
+    </div>
+    <div class="form-group">
+      <%= f.label "Are you a drinker?" %>
+      <%= f.select :drinking, options_for_select(Choices['is_drinker']) %>
+    </div>
+    <div class="form-group">
+        <%= f.label "Ethnicity:" %><br />
+        <%= f.collection_check_boxes :ethnicity_ids, Ethnicity.all, :id, :name do |b| %>
+      <div class="collection-check-box">
+        <%= b.check_box %>
+        <%= b.label %>
+      </div>
+    <% end %>
+    </div>
+    <div class="form-group">
+      <%= f.label "Religion:" %><br />
+      <%= f.collection_check_boxes :religion_ids, Religion.all, :id, :name do |c| %>
+    <div class="collection-check-box">
+      <%= c.check_box %>
+      <%= c.label %>
+    </div>
+      <% end %>
+    </div>
+    <div class="form-group">
+      <%= f.label "Current Salary:" %>
+      <%= f.select :salary, options_for_select(Choices['salary_range']) %>
+    </div>
+    <div class="form-group">
+      <%= f.label "Interests:" %><br />
+      <%= f.collection_check_boxes :interest_ids, Interest.all, :id, :name do |d| %>
+    <div class="collection-check-box">
+      <%= d.check_box %>
+      <%= d.label %>
+    </div>
+  <% end %>
+    </div>
+    <div class="form-group">
+      <%= f.label "Are you looking for something specific?" %>
+      <%= f.text_area :specifications %>
+    </div>
+    <div class="form-group">
+      <%= f.label "About yourself:" %>
+      <%= f.text_area :essay %>
+    </div>
+    <div class="form-group">
+      <%= f.label "Upload your profile picture:" %>
+      <%= f.file_field :picture %>
+    </div>
+      <%= submit_tag("Find Love!") %>
+  <% end %>
+</div>

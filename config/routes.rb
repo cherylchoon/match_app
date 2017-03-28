@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get 'conversations/index'
-
   root "sessions#index"
 
   get "/login" => "sessions#new"
@@ -13,6 +11,9 @@ Rails.application.routes.draw do
   resources :conversations, only: [:index, :show]
   resources :personal_messages, only: [:new, :create]
 
+  get "images/destroy/:id" => "images#destroy"
+
   resources :profiles
+  resources :preferences
 
 end

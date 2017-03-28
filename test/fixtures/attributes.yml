@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  height_feet: 1
+  height_inches: 1
+  body_type: MyString
+  status: MyString
+  has_kids: MyString
+  want_kids: MyString
+  eduction: MyString
+  is_smoker: MyString
+  is_drinker: MyString
+  ethnicity: MyString
+  religion: MyString
+  salary: MyString
+  interest: MyString
+
+two:
+  height_feet: 1
+  height_inches: 1
+  body_type: MyString
+  status: MyString
+  has_kids: MyString
+  want_kids: MyString
+  eduction: MyString
+  is_smoker: MyString
+  is_drinker: MyString
+  ethnicity: MyString
+  religion: MyString
+  salary: MyString
+  interest: MyString

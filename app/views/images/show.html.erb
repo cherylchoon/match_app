@@ -1,23 +1,24 @@
 <div class="col-md-4">
-<br><br>
-
+<br>
   <h3>Pictures of <%=@person.first_name%></h3>
-
+<br>
   <% @images.each do |img|%>
 
-    <img src="<%=img.image_url(:thumb)%>" alt="logo.png">
+    <div class="row">
+      <img src="<%=img.image_url(:thumb)%>" alt="logo.png">
+    </div>
+      <% if session[:user_id] == img[:user_id] %>
+        <div class="row">
+          <a href="/images/destroy/<%=img[:id]%>">delete</a>
+        </div>
+      <% end %>
+    <div class="row">
+      <b><i><p align="center">"<%= img.caption %>"</p></i></b>
+    </div>
     <br>
-    <b><i><p style="margin-left: 65px;">"<%= img.caption %>"</p></i></b>
-
-    <br><br>
-
-<!--     <br>
-<img src="<%=img.image_url(:tiny)%>" alt="logo.png">
-<br>
-<img src="<%=img.image_url(:profile)%>" alt="logo.png"> -->
-
   <%end%>
 
+<% if session[:user_id] == @person.id %>
 
   <% if flash[:message] %>
     <% flash[:message].each do |msg| %>
@@ -25,12 +26,9 @@
     <%end%>
   <%end%>
 
-
-
 <br><br>
 
   <p>Add a new image to your profile</p>
-
 
   <form action="/images" method='post' enctype="multipart/form-data">
     <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
@@ -40,4 +38,5 @@
     <input type="submit" value='upload'>
   </form>
 
+<%end%>
 </div>

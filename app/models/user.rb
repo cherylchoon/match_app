@@ -5,6 +5,12 @@ class User < ActiveRecord::Base
   has_many :authored_conversations, class_name: 'Conversation', foreign_key: 'sender_id'
   has_many :received_conversations, class_name: 'Conversation', foreign_key: 'receiver_id'
 
+  has_many :user_liked, class_name: 'Like', foreign_key: 'liked_id'
+  has_many :user_liker, class_name: 'Like', foreign_key: 'liker_id'
+  has_many :likes, class_name:'User', through: 'user_liked'
+  has_many :likers, class_name:'User', through: 'user_liker'
+
+
   # has_many :received_messages, class_name: 'PersonalMessage', foreign_key: 'receiver_id'
   # has_many :sent_messages, class_name: 'PersonalMessage', foreign_key: 'sender_id'
 

@@ -1,0 +1,60 @@
+height_feet:
+  - 4
+  - 5
+  - 6
+  - 7
+height_inches:
+  - 0
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  - 8
+  - 9
+  - 10
+  - 11
+body_type:
+  - slender
+  - average
+  - athletic/toned
+  - heavyset
+relationship_status:
+  - never married
+  - currently separated
+  - divorced
+  - widow/widower
+has_kids:
+  - Don't/doesn't have kids
+  - Yes, but they live away from home
+  - Yes, sometimes they live at home
+  - Yes, and they live at home full-time
+wants_kids:
+  - Don't/doesn't want kids
+  - Defintely
+  - Someday
+education:
+  - High School/GED
+  - Some college
+  - Associate's Degree
+  - Bachelor's Degree
+  - Master's Degree
+  - Doctoral Degree or PhD
+is_smoker:
+  - Not a smoker
+  - Yes, socially
+  - Yes, moderately
+  - Yes, regularly
+is_drinker:
+  - No/Not Anymore
+  - Yes, socially
+  - Yes, moderately
+  - Yes, regularly
+salary_range:
+  - $24,999 or below
+  - $25,000 - $49,999 annually
+  - $50,000 - $99,999 annually
+  - $100,000 - $149,999 annually
+  - $150,000 and above
