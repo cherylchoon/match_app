@@ -12,8 +12,7 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 20170328180522) do
-
-
+  
     create_table "pictures", force: :cascade do |t|
       t.integer  "user_id"
       t.string   "image"
@@ -40,19 +39,22 @@ ActiveRecord::Schema.define(version: 20170328180522) do
     t.integer "profile_id",   null: false
   end
 
-<<<<<<< HEAD
   create_table "interests", force: :cascade do |t|
     t.string   "name"
-=======
-  create_table "likes", force: :cascade do |t|
-    t.integer  "liker_id"
-    t.integer  "liked_id"
->>>>>>> 2e622c2ce257d5571599f2188477a8c5c5185858
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-<<<<<<< HEAD
+  create_table "likes", force: :cascade do |t|
+    t.integer  "liker_id"
+    t.integer  "liked_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "likes", ["liked_id"], name: "index_likes_on_liked_id"
+  add_index "likes", ["liker_id"], name: "index_likes_on_liker_id"
+
   create_table "interests_preferences", id: false, force: :cascade do |t|
     t.integer "interest_id",   null: false
     t.integer "preference_id", null: false
@@ -62,16 +64,6 @@ ActiveRecord::Schema.define(version: 20170328180522) do
     t.integer "interest_id", null: false
     t.integer "profile_id",  null: false
   end
-
-  create_table "pictures", force: :cascade do |t|
-    t.integer  "user_id"
-    t.string   "image"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string   "caption"
-  end
-
-  add_index "pictures", ["user_id"], name: "index_pictures_on_user_id"
 
   create_table "preferences", force: :cascade do |t|
     t.integer  "min_height_feet"
@@ -99,10 +91,6 @@ ActiveRecord::Schema.define(version: 20170328180522) do
     t.integer "religion_id",   null: false
     t.integer "preference_id", null: false
   end
-=======
-  add_index "likes", ["liked_id"], name: "index_likes_on_liked_id"
-  add_index "likes", ["liker_id"], name: "index_likes_on_liker_id"
->>>>>>> 2e622c2ce257d5571599f2188477a8c5c5185858
 
   create_table "profiles", force: :cascade do |t|
     t.integer  "height_feet"
