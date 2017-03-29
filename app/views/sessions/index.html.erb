@@ -1,7 +1,25 @@
 <div class="row">
   <div class="col-md-3">
     <span class="sidebar-header">My Profile</span>
-    <a href="#"><img src="" alt="Profile Picture"></a>
+
+
+    <% if @picture %>
+      <img src="<%=@picture.image_url(:profile)%>" alt="ppic.png">
+    <% else %>
+    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+          Add a picture to your profile!
+        </a>
+      <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+      <div class="card-block">
+        <form action="/images" method='post' enctype="multipart/form-data">
+          <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+          <input type="file" name="image" accept="image/*">
+          <input type="text" name="caption" placeholder="add caption">
+          <input type="submit" value='upload'>
+        </form>
+      </div>
+     </div>
+    <%end%>
     <span class="sidebar-link">Views count</span>
     <span class="sidebar-link"><a href="/profiles/<%=session[:user_id]%>/edit">Edit Profile</a></span>
     <span class="sidebar-link"><a href="/preferences/<%=session[:user_id]%>/edit">Edit Preferences</a></span>
@@ -23,7 +41,8 @@
 
 
   <div class="col-md-5">
-  <!-- main content -->
+  <h3>testing here</h3>
+
   </div>
 
   <div class="col-md-4">

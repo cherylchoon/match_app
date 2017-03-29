@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170328183505) do
+ActiveRecord::Schema.define(version: 20170329163239) do
 
   create_table "conversations", force: :cascade do |t|
     t.integer  "sender_id"
@@ -74,7 +74,6 @@ ActiveRecord::Schema.define(version: 20170328183505) do
 
   add_index "matches", ["match_one_id"], name: "index_matches_on_match_one_id"
   add_index "matches", ["match_two_id"], name: "index_matches_on_match_two_id"
-
 
   create_table "personal_messages", force: :cascade do |t|
     t.text     "content"

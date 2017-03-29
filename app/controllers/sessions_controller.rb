@@ -2,6 +2,7 @@ class SessionsController < ApplicationController
   skip_before_action :require_login, only: [:new, :create]
 
   def index
+    @picture = Picture.find_by(user_id:session[:user_id])
   end
 
   def new

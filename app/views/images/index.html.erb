@@ -31,6 +31,7 @@
   <form action="/images" method='post' enctype="multipart/form-data">
     <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
     <input type="file" name="image" accept="image/*">
+    <input type="text" name="caption" value="add a caption">
     <input type="submit" value='upload'>
   </form>
 
