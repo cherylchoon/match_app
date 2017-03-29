@@ -8,7 +8,8 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to root_path
+      session[:user_id] == @user.id
+      redirect_to '/profiles/new'
     else
       flash[:errors] = @user.errors.full_messages
       redirect_to :back
@@ -18,6 +19,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @images = Picture.all
+    @profile = Profile.find_by_user_id(params[:id])
   end
 
   def edit

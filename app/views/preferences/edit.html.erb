@@ -1,6 +1,7 @@
+<a href="/">Return to Dashboard</a>
 
-<h3>Please set your preferences</h3>
-<p><i>*remember, you can always go back later and edit them!*</i></p>
+<hr>
+<h3>Edit Your Preferences</h3>
 <hr>
 <div class="col-md-4">
   <%= form_for @preferences do |f| %>
@@ -20,23 +21,8 @@
     </div>
 
     <div class="form-group">
-      <%= f.label "Maximum Height (inches):" %>
+      <%= f.label "Minimum Height (inches):" %>
       <%= f.select :max_height_inches, options_for_select(Choices['height_inches']) %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label "Minimum Age:" %>
-      <%= f.select :min_age, options_for_select(Choices['min_age']) %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label "Maximum Age:" %>
-      <%= f.select :max_age, options_for_select(Choices['max_age']) %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label "Gender:" %>
-      <%= f.select :gender, options_for_select(Choices['gender']) %>
     </div>
 
     <div class="form-group">
@@ -60,11 +46,11 @@
       <%= f.select :education, options_for_select(Choices['education']) %>
     </div>
     <div class="form-group">
-      <%= f.label "Smoker?" %>
+      <%= f.label "Are you a smoker?" %>
       <%= f.select :smoking, options_for_select(Choices['is_smoker']) %>
     </div>
     <div class="form-group">
-      <%= f.label "Drinker?" %>
+      <%= f.label "Are you a drinker?" %>
       <%= f.select :drinking, options_for_select(Choices['is_drinker']) %>
     </div>
     <div class="form-group">
@@ -98,6 +84,6 @@
     </div>
   <% end %>
     </div>
-    <%= submit_tag("Set your LOVE preferences!") %>
+    <%= submit_tag("Change your LOVE preferences!") %>
   <% end %>
 </div>

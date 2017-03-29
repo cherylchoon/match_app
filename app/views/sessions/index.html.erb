@@ -3,13 +3,15 @@
 <span class="sidebar-header">My Profile</span>
 <a href="#"><img src="" alt="Profile Picture"></a>
 <span class="sidebar-link">Views count</span>
+<span class="sidebar-link"><a href="/profiles/<%=session[:user_id]%>/edit">Edit Profile</a></span>
+<span class="sidebar-link"><a href="/preferences/<%=session[:user_id]%>/edit">Edit Preferences</a></span>
 <br>
 <span class="sidebar-header">Profile Power Ups</span>
 <span class="sidebar-link"><a href="#">Get 3x more views and emails</a></span>
 <br>
 <span class="sidebar-header">Matches</span>
 <span class="sidebar-link"><a href="#">Daily Matches</a></span>
-<span class="sidebar-link"><a href="#">Match Me</a></span>
+<span class="sidebar-link"><a href="/matches" data-method="POST">Match Me</a></span>
 <br>
 <span class="sidebar-header">Messages</span>
 <span class="sidebar-link"><a href="#">Reply for Free</a></span>
@@ -20,7 +22,6 @@
 <span class="sidebar-link"><a href="#">Favorites</a></span>
 <span class="sidebar-link"><a href="#">Likes</a></span>
 <span class="sidebar-link"><a href="#">Phonebook</a></span>
-
 </div>
 
 <div class="col-md-5">

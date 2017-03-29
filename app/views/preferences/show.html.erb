@@ -1,5 +1,5 @@
+<h1>Your Preferences</h1>
 
-<h2>Your Preferences</h2>
 <hr>
 
 <h5>Height: From <%= @preferences.min_height_feet%>'<%= @preferences.min_height_inches%>" to <%= @preferences.max_height_feet%>'<%= @preferences.max_height_inches%>"</h5>
@@ -25,5 +25,4 @@
 <% end %>
 
 <hr>
-
-<a href="#">Edit Your Preferences</a>
+<a href="/preferences/<%= @preferences.user_id %>/edit">Edit Your Preferences</a>

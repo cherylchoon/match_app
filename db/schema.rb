@@ -11,16 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 20170328152819) do
-
-    create_table "pictures", force: :cascade do |t|
-      t.integer  "user_id"
-      t.string   "image"
-      t.datetime "created_at", null: false
-      t.datetime "updated_at", null: false
-      t.string   "caption"
-    end
+ActiveRecord::Schema.define(version: 20170329163239) do
 
   create_table "conversations", force: :cascade do |t|
     t.integer  "sender_id"
@@ -53,6 +44,16 @@ ActiveRecord::Schema.define(version: 20170328152819) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "interests_preferences", id: false, force: :cascade do |t|
+    t.integer "interest_id",   null: false
+    t.integer "preference_id", null: false
+  end
+
+  create_table "interests_profiles", id: false, force: :cascade do |t|
+    t.integer "interest_id", null: false
+    t.integer "profile_id",  null: false
+  end
+
   create_table "likes", force: :cascade do |t|
     t.integer  "liker_id"
     t.integer  "liked_id"
@@ -63,15 +64,37 @@ ActiveRecord::Schema.define(version: 20170328152819) do
   add_index "likes", ["liked_id"], name: "index_likes_on_liked_id"
   add_index "likes", ["liker_id"], name: "index_likes_on_liker_id"
 
-  create_table "interests_preferences", id: false, force: :cascade do |t|
-    t.integer "interest_id",   null: false
-    t.integer "preference_id", null: false
+  create_table "matches", force: :cascade do |t|
+    t.boolean  "is_match"
+    t.integer  "match_one_id"
+    t.integer  "match_two_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
-  create_table "interests_profiles", id: false, force: :cascade do |t|
-    t.integer "interest_id", null: false
-    t.integer "profile_id",  null: false
+  add_index "matches", ["match_one_id"], name: "index_matches_on_match_one_id"
+  add_index "matches", ["match_two_id"], name: "index_matches_on_match_two_id"
+
+  create_table "personal_messages", force: :cascade do |t|
+    t.text     "content"
+    t.integer  "conversation_id"
+    t.integer  "user_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
+
+  add_index "personal_messages", ["conversation_id"], name: "index_personal_messages_on_conversation_id"
+  add_index "personal_messages", ["user_id"], name: "index_personal_messages_on_user_id"
+
+  create_table "pictures", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "caption"
+  end
+
+  add_index "pictures", ["user_id"], name: "index_pictures_on_user_id"
 
   create_table "preferences", force: :cascade do |t|
     t.integer  "min_height_feet"
@@ -91,6 +114,9 @@ ActiveRecord::Schema.define(version: 20170328152819) do
     t.integer  "user_id"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+    t.string   "gender"
+    t.integer  "min_age"
+    t.integer  "max_age"
   end
 
   add_index "preferences", ["user_id"], name: "index_preferences_on_user_id"
@@ -99,17 +125,6 @@ ActiveRecord::Schema.define(version: 20170328152819) do
     t.integer "religion_id",   null: false
     t.integer "preference_id", null: false
   end
-
-  create_table "personal_messages", force: :cascade do |t|
-    t.text     "content"
-    t.integer  "conversation_id"
-    t.integer  "user_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-  end
-
-  add_index "personal_messages", ["conversation_id"], name: "index_personal_messages_on_conversation_id"
-  add_index "personal_messages", ["user_id"], name: "index_personal_messages_on_user_id"
 
   create_table "profiles", force: :cascade do |t|
     t.integer  "height_feet"
@@ -145,6 +160,26 @@ ActiveRecord::Schema.define(version: 20170328152819) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "scores", force: :cascade do |t|
+    t.boolean  "height"
+    t.boolean  "body_type"
+    t.boolean  "relationship_status"
+    t.boolean  "has_kids"
+    t.boolean  "wants_kids"
+    t.boolean  "education"
+    t.boolean  "is_smoker"
+    t.boolean  "is_drinker"
+    t.boolean  "salary"
+    t.boolean  "ethnicity"
+    t.boolean  "religion"
+    t.boolean  "interests"
+    t.integer  "match_id"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  add_index "scores", ["match_id"], name: "index_scores_on_match_id"
+
   create_table "users", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
@@ -153,10 +188,10 @@ ActiveRecord::Schema.define(version: 20170328152819) do
     t.integer  "zip_code"
     t.string   "gender"
     t.date     "birthday"
-    t.boolean  "loggedin"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.boolean  "is_active",       default: true
+    t.boolean  "loggedin"
   end
 
 end
