@@ -1,5 +1,7 @@
-<h1>Set Your Preferences</h1>
 
+<h3>Please set your preferences</h3>
+<p><i>*remember, you can always go back later and edit them!*</i></p>
+<hr>
 <div class="col-md-4">
   <%= form_for @preferences do |f| %>
 
@@ -18,8 +20,23 @@
     </div>
 
     <div class="form-group">
-      <%= f.label "Minimum Height (inches):" %>
+      <%= f.label "Maximum Height (inches):" %>
       <%= f.select :max_height_inches, options_for_select(Choices['height_inches']) %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label "Minimum Age:" %>
+      <%= f.select :min_age, options_for_select(Choices['min_age']) %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label "Maximum Age:" %>
+      <%= f.select :max_age, options_for_select(Choices['max_age']) %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label "Gender:" %>
+      <%= f.select :gender, options_for_select(Choices['gender']) %>
     </div>
 
     <div class="form-group">
@@ -43,11 +60,11 @@
       <%= f.select :education, options_for_select(Choices['education']) %>
     </div>
     <div class="form-group">
-      <%= f.label "Are you a smoker?" %>
+      <%= f.label "Smoker?" %>
       <%= f.select :smoking, options_for_select(Choices['is_smoker']) %>
     </div>
     <div class="form-group">
-      <%= f.label "Are you a drinker?" %>
+      <%= f.label "Drinker?" %>
       <%= f.select :drinking, options_for_select(Choices['is_drinker']) %>
     </div>
     <div class="form-group">

@@ -20,5 +20,6 @@ Rails.application.routes.draw do
 
   resources :profiles
   resources :preferences
+  resources :matches, only: [:create, :show]
 
 end

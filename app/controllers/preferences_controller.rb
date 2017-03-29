@@ -16,10 +16,30 @@ class PreferencesController < ApplicationController
   end
 
   def show
-    @preferences = Preference.find_by_user_id(session[:user_id])
+    @preferences = Preference.find_by_user_id(params[:id])
+  end
+
+  def edit
+    @preferences = Preference.find_by_user_id(params[:id])
+    unless @preferences
+      flash[:notice] = "You need to set your preferences first!"
+      redirect_to :back
+    end
+  end
+
+  def update
+    @pref = Preference.find_by_user_id(params[:id])
+    @pref.update(preference_params)
+    if @pref.save
+      flash[:notice] = "You have successfully upated your preferences!"
+      redirect_to "/users/#{session[:user_id]}"
+    else
+      flash[:errors] = @pref.errors.full_messages
+      redirect_to :back
+    end
   end
 
   def preference_params
-    params.require(:preference).permit(:min_height_feet, :min_height_inches, :max_height_feet, :max_height_inches, :body_type, :status, :has_kids, :wants_kids, :education, :smoking, :drinking, :salary, ethnicity_ids:[], religion_ids:[], interest_ids:[])
+    params.require(:preference).permit(:min_height_feet, :min_height_inches, :max_height_feet, :max_height_inches, :min_age, :max_age, :gender, :body_type, :status, :has_kids, :wants_kids, :education, :smoking, :drinking, :salary, ethnicity_ids:[], religion_ids:[], interest_ids:[])
   end
 end

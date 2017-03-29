@@ -1,0 +1,89 @@
+<a href="/">Return to Dashboard</a>
+
+<hr>
+<h3>Edit Your Preferences</h3>
+<hr>
+<div class="col-md-4">
+  <%= form_for @preferences do |f| %>
+
+    <div class="form-group">
+      <%= f.label "Minimum Height (feet):" %>
+      <%= f.select :min_height_feet, options_for_select(Choices['height_feet']) %>
+    </div>
+    <div class="form-group">
+      <%= f.label "Minimum Height (inches):" %>
+      <%= f.select :min_height_inches, options_for_select(Choices['height_inches']) %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label "Maximum Height (feet):" %>
+      <%= f.select :max_height_feet, options_for_select(Choices['height_feet']) %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label "Minimum Height (inches):" %>
+      <%= f.select :max_height_inches, options_for_select(Choices['height_inches']) %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label "Body Type:" %>
+      <%= f.select :body_type, options_for_select(Choices['body_type']), {}, class: "float-right" %>
+    </div>
+    <div class="form-group">
+      <%= f.label "Relationship Status:" %>
+      <%= f.select :status, options_for_select(Choices['relationship_status']), {}, class: "float-right" %>
+    </div>
+    <div class="form-group">
+      <%= f.label "Do you have kids?" %>
+      <%= f.select :has_kids, options_for_select(Choices['has_kids']) %>
+    </div>
+    <div class="form-group">
+      <%= f.label "Do you want kids?" %>
+      <%= f.select :wants_kids, options_for_select(Choices['wants_kids']) %>
+    </div>
+    <div class="form-group">
+      <%= f.label "Highest level of education:" %>
+      <%= f.select :education, options_for_select(Choices['education']) %>
+    </div>
+    <div class="form-group">
+      <%= f.label "Are you a smoker?" %>
+      <%= f.select :smoking, options_for_select(Choices['is_smoker']) %>
+    </div>
+    <div class="form-group">
+      <%= f.label "Are you a drinker?" %>
+      <%= f.select :drinking, options_for_select(Choices['is_drinker']) %>
+    </div>
+    <div class="form-group">
+        <%= f.label "Ethnicity:" %><br />
+        <%= f.collection_check_boxes :ethnicity_ids, Ethnicity.all, :id, :name do |b| %>
+      <div class="collection-check-box">
+        <%= b.check_box %>
+        <%= b.label %>
+      </div>
+    <% end %>
+    </div>
+    <div class="form-group">
+      <%= f.label "Religion:" %><br />
+      <%= f.collection_check_boxes :religion_ids, Religion.all, :id, :name do |c| %>
+    <div class="collection-check-box">
+      <%= c.check_box %>
+      <%= c.label %>
+    </div>
+      <% end %>
+    </div>
+    <div class="form-group">
+      <%= f.label "Current Salary:" %>
+      <%= f.select :salary, options_for_select(Choices['salary_range']) %>
+    </div>
+    <div class="form-group">
+      <%= f.label "Interests:" %><br />
+      <%= f.collection_check_boxes :interest_ids, Interest.all, :id, :name do |d| %>
+    <div class="collection-check-box">
+      <%= d.check_box %>
+      <%= d.label %>
+    </div>
+  <% end %>
+    </div>
+    <%= submit_tag("Change your LOVE preferences!") %>
+  <% end %>
+</div>

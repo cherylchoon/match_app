@@ -54,8 +54,11 @@ GEM
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.5)
     debug_inspector (0.0.2)
+    emoji (1.0.7)
+      json
     erubis (2.7.0)
     execjs (2.7.0)
+    gemoji (3.0.0)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     hirb (0.7.3)
@@ -159,6 +162,8 @@ DEPENDENCIES
   byebug
   carrierwave (~> 1.0)
   coffee-rails (~> 4.1.0)
+  emoji
+  gemoji
   hirb
   jbuilder (~> 2.0)
   jquery-rails

@@ -5,7 +5,7 @@ class ConversationsController < ApplicationController
 
   def show
     @personal_message = PersonalMessage.new
-      @conversation = Conversation.find(params[:id])
+    @conversation = Conversation.find(params[:id])
   end
 
   private

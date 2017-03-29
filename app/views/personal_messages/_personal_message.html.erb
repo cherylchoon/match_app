@@ -1,5 +1,5 @@
 <span class="personal-messages">
-  <%= personal_message.content %>
+  <%= emojify personal_message.content %>
   <p>
     <span class="message-details"><a href="/users/<%= personal_message.user.id %>"><%= personal_message.user.first_name %></a> sent at <%= personal_message.created_at.strftime("%B %d %H:%M") %></span>
   </p>

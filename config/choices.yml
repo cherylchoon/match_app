@@ -16,6 +16,17 @@ height_inches:
   - 9
   - 10
   - 11
+min_age:
+  - 18
+  - 19
+  - 20
+max_age:
+  - 50
+  - 51
+  - 52
+gender:
+  - male
+  - female
 body_type:
   - slender
   - average

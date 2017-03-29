@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  height: false
+  body_type: false
+  relationship_status: false
+  has_kids: false
+  wants_kids: false
+  education: false
+  is_smoker: false
+  is_drinker: false
+  salary: false
+  ethnicity: false
+  religion: false
+  interests: false
+  match_id: 
+
+two:
+  height: false
+  body_type: false
+  relationship_status: false
+  has_kids: false
+  wants_kids: false
+  education: false
+  is_smoker: false
+  is_drinker: false
+  salary: false
+  ethnicity: false
+  religion: false
+  interests: false
+  match_id: 
