@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
         session[:user_id] = @user.id
       end
       session[:user_id] = @user.id
-      @user.loggedin = true
+      @user.update(loggedin: true)
       redirect_to root_path
     else
       if !@user
@@ -32,7 +32,7 @@ class SessionsController < ApplicationController
 
   def destroy
     @user = User.find(session[:user_id])
-    @user.loggedin = false
+    @user.update(loggedin: false)
     session.clear
     session.delete(:user_id)
     redirect_to login_path
