@@ -8,7 +8,7 @@ class ProfilesController < ApplicationController
     profile.user_id = session[:user_id]
     if profile.save
       flash[:notice] = "You have successfully created a profile!"
-      redirect_to "/users/#{session[:user_id]}"
+      redirect_to "/preferences/new"
     else
       flash[:errors] = profile.errors.full_messages
       redirect_to :back
@@ -39,6 +39,6 @@ class ProfilesController < ApplicationController
 
   private
   def profile_params
-    params.require(:profile).permit(:height_feet, :height_inches, :body_type, :status, :has_kids, :wants_kids, :education, :smoking, :drinking, :salary, :specifications, :essay, ethnicity_ids:[], religion_ids:[], interest_ids:[])
+    params.require(:profile).permit(:height_feet, :height_inches, :body_type, :status, :has_kids, :wants_kids, :education, :smoking, :drinking, :salary, :specifications, :essay, :image, ethnicity_ids:[], religion_ids:[], interest_ids:[])
   end
 end

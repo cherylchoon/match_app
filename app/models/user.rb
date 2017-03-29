@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
   has_secure_password
+  has_many :match_ones, class_name: 'Match'
+  has_many :match_twos, class_name: 'Match'
   has_many :personal_messages, dependent: :destroy
 
   has_many :authored_conversations, class_name: 'Conversation', foreign_key: 'sender_id'
@@ -9,6 +11,8 @@ class User < ActiveRecord::Base
   has_many :user_liker, class_name: 'Like', foreign_key: 'liker_id'
   has_many :likes, class_name:'User', through: 'user_liked'
   has_many :likers, class_name:'User', through: 'user_liker'
+
+  has_one :preference 
 
 
   # has_many :received_messages, class_name: 'PersonalMessage', foreign_key: 'receiver_id'

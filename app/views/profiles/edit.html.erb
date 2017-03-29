@@ -1,4 +1,8 @@
+<a href="/">Return to Dashboard</a>
+<hr>
 
+<h3>Edit Your Profile</h3>
+<hr>
 <div class="col-md-4">
   <%= form_for @profile do |f| %>
     <div class="form-group">
@@ -38,17 +42,35 @@
       <%= f.select :drinking, options_for_select(Choices['is_drinker']) %>
     </div>
     <div class="form-group">
-
+      <%= f.label "Ethnicity:" %><br />
+      <%= f.collection_check_boxes :ethnicity_ids, Ethnicity.all, :id, :name do |b| %>
+    <div class="collection-check-box">
+      <%= b.check_box %>
+      <%= b.label %>
+    </div>
+  <% end %>
     </div>
     <div class="form-group">
-
+      <%= f.label "Religion:" %><br />
+      <%= f.collection_check_boxes :religion_ids, Religion.all, :id, :name do |c| %>
+    <div class="collection-check-box">
+      <%= c.check_box %>
+      <%= c.label %>
+    </div>
+      <% end %>
     </div>
     <div class="form-group">
       <%= f.label "Current Salary:" %>
       <%= f.select :salary, options_for_select(Choices['salary_range']) %>
     </div>
     <div class="form-group">
-
+      <%= f.label "Interests:" %><br />
+      <%= f.collection_check_boxes :interest_ids, Interest.all, :id, :name do |d| %>
+    <div class="collection-check-box">
+      <%= d.check_box %>
+      <%= d.label %>
+    </div>
+  <% end %>
     </div>
     <div class="form-group">
       <%= f.label "Are you looking for something specific?" %>

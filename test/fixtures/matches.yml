@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  is_match: false
+  match_one_id: 
+  match_two_id: 
+
+two:
+  is_match: false
+  match_one_id: 
+  match_two_id: 

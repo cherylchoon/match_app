@@ -21,6 +21,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @profile = Profile.find_by(user_id: params[:id])
     @images = Picture.all
+    @profile = Profile.find_by_user_id(params[:id])
   end
 
   def edit
