@@ -33,7 +33,6 @@ class SessionsController < ApplicationController
   def destroy
     @user = User.find(session[:user_id])
     @user.loggedin = false
-    session.clear
     session.delete(:user_id)
     redirect_to login_path
   end

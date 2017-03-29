@@ -16,3 +16,9 @@
 #secondary-navbar {
   margin-bottom: 20px;
 }
+
+#conversation-body {
+  max-height: 400px;
+  overflow-y: auto;
+  margin-bottom: 2em;
+}

@@ -8,7 +8,9 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to root_path
+      flash[:notice] = ["You have registered successfully, please fill in the questionaire."]
+      session[:user_id] = @user.id
+      redirect_to new_profile_path
     else
       flash[:errors] = @user.errors.full_messages
       redirect_to :back
@@ -17,6 +19,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @profile = Profile.find_by(user_id: params[:id])
     @images = Picture.all
   end
 
