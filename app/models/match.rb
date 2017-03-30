@@ -5,7 +5,7 @@ class Match < ActiveRecord::Base
   belongs_to :match_two, class_name: 'User', foreign_key: 'match_two_id'
 
   validates_uniqueness_of :match_one, :scope => :match_two
-  # validates_uniqueness_of :match_two, :scope => :match_one
+  validates_uniqueness_of :match_two, :scope => :match_one
 
   protected
     def set_defaults

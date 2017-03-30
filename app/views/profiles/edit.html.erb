@@ -6,12 +6,8 @@
 <div class="col-md-4">
   <%= form_for @profile do |f| %>
     <div class="form-group">
-      <%= f.label "Height (feet):" %>
-      <%= f.select :height_feet, options_for_select(Choices['height_feet']) %>
-    </div>
-    <div class="form-group">
-      <%= f.label "Height (inches):" %>
-      <%= f.select :height_inches, options_for_select(Choices['height_inches']) %>
+      <%= f.label "Height:" %>
+      <%= f.select :height, options_for_select(Choices['height']) %>
     </div>
     <div class="form-group">
       <%= f.label "Body Type:" %>

@@ -7,22 +7,29 @@
   <%= form_for @preferences do |f| %>
 
     <div class="form-group">
-      <%= f.label "Minimum Height (feet):" %>
-      <%= f.select :min_height_feet, options_for_select(Choices['height_feet']) %>
-    </div>
-    <div class="form-group">
-      <%= f.label "Minimum Height (inches):" %>
-      <%= f.select :min_height_inches, options_for_select(Choices['height_inches']) %>
+      <%= f.label "Minimum Height:" %>
+      <%= f.select :min_height, options_for_select(Choices['height']) %>
     </div>
 
     <div class="form-group">
-      <%= f.label "Maximum Height (feet):" %>
-      <%= f.select :max_height_feet, options_for_select(Choices['height_feet']) %>
+      <%= f.label "Maximum Height:" %>
+      <%= f.select :max_height, options_for_select(Choices['height']) %>
+    </div>
+
+
+    <div class="form-group">
+      <%= f.label "Minimum Age:" %>
+      <%= f.select :min_age, options_for_select((18..100).step(1).to_a.map{|s| ["#{s}", s]}) %>
     </div>
 
     <div class="form-group">
-      <%= f.label "Minimum Height (inches):" %>
-      <%= f.select :max_height_inches, options_for_select(Choices['height_inches']) %>
+      <%= f.label "Maximum Age:" %>
+      <%= f.select :max_age, options_for_select((18..100).step(1).to_a.map{|s| ["#{s}", s]}) %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label "Gender:" %>
+      <%= f.select :gender, options_for_select(Choices['gender']) %>
     </div>
 
     <div class="form-group">
@@ -34,11 +41,11 @@
       <%= f.select :status, options_for_select(Choices['relationship_status']), {}, class: "float-right" %>
     </div>
     <div class="form-group">
-      <%= f.label "Do you have kids?" %>
+      <%= f.label "Has kids?" %>
       <%= f.select :has_kids, options_for_select(Choices['has_kids']) %>
     </div>
     <div class="form-group">
-      <%= f.label "Do you want kids?" %>
+      <%= f.label "Wants kids?" %>
       <%= f.select :wants_kids, options_for_select(Choices['wants_kids']) %>
     </div>
     <div class="form-group">
@@ -54,7 +61,7 @@
       <%= f.select :drinking, options_for_select(Choices['is_drinker']) %>
     </div>
     <div class="form-group">
-        <%= f.label "Ethnicity:" %><br />
+        <%= f.label "Preferred Ethnicities:" %><br />
         <%= f.collection_check_boxes :ethnicity_ids, Ethnicity.all, :id, :name do |b| %>
       <div class="collection-check-box">
         <%= b.check_box %>
@@ -63,7 +70,7 @@
     <% end %>
     </div>
     <div class="form-group">
-      <%= f.label "Religion:" %><br />
+      <%= f.label "Preferred Religions:" %><br />
       <%= f.collection_check_boxes :religion_ids, Religion.all, :id, :name do |c| %>
     <div class="collection-check-box">
       <%= c.check_box %>
@@ -74,15 +81,6 @@
     <div class="form-group">
       <%= f.label "Current Salary:" %>
       <%= f.select :salary, options_for_select(Choices['salary_range']) %>
-    </div>
-    <div class="form-group">
-      <%= f.label "Interests:" %><br />
-      <%= f.collection_check_boxes :interest_ids, Interest.all, :id, :name do |d| %>
-    <div class="collection-check-box">
-      <%= d.check_box %>
-      <%= d.label %>
-    </div>
-  <% end %>
     </div>
     <%= submit_tag("Change your LOVE preferences!") %>
   <% end %>
