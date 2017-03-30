@@ -22,4 +22,8 @@ Rails.application.routes.draw do
   resources :preferences
   resources :matches, only: [:create, :show]
 
+  resources :chats do
+    resources :chat_messages
+  end
+  
 end

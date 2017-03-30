@@ -42,7 +42,34 @@
 
   <div class="col-md-5">
   <h3>testing here</h3>
+    <div class="container">
+      <div class="row">
+        <% @users.each do |user|%>
 
+        <div class="col-5" style="padding: 2px; margin: 2px; outline: 1px solid gray;" align="center">
+          <a href="/users/<%=user.id%>"><%=user.first_name%></a><br>
+          <b><i>Match score: 100%</i></b><br>
+          <% if user.pictures.first %>
+            <img src="<%=user.pictures.first.image_url(:tiny)%>" alt="ppic.png">
+          <% else %>
+            <br>No picture yet <br>
+          <% end %>
+          <% if user.loggedin == true %>
+            <br>
+            <%=user.first_name%> is online now!
+            <br>
+            <%= link_to "Chat live now!", "#", class:"start-conversation",
+                                "data-sid" => current_user.id, "data-rip" => user.id %>
+          <%else%>
+            <br>
+            <%=user.first_name%> was last logged in on <%=user.updated_at%>
+            <br>
+          <%end%>
+        </div>
+        <%end%>
+
+      </div>
+    </div>
   </div>
 
   <div class="col-md-4">

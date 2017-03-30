@@ -8,6 +8,10 @@ class ProfilesController < ApplicationController
     profile.user_id = session[:user_id]
     if profile.save
       flash[:notice] = "You have successfully created a profile!"
+      newimage = Picture.new(user_id:session[:user_id], image:params[:image], caption:params[:caption])
+      if newimage.valid?
+        newimage.save
+      end
       redirect_to "/preferences/new"
     else
       flash[:errors] = profile.errors.full_messages

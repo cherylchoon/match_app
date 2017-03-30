@@ -22,9 +22,9 @@
   <% if @user.id != session[:user_id] %>
   <br>
     <% if @likeyet.empty? %>
-      <a href="/likes/add/<%=@user.id%>"><button>Like <%=@user.first_name%>'s page</button></a>
+      <a href="/likes/add/<%=@user.id%>"><button type="button" class="btn btn-success">Like <%=@user.first_name%>'s page</button></a>
     <%else%>
-      <b><i>You like <%=@user.first_name%></i> - <a href="/likes/remove/<%=@likeyet[0].id%>">unlike</a></b>
+      <b><i>You like <%=@user.first_name%></i> - <a href="/likes/remove/<%=@likeyet[0].id%>"><button type="button" class="btn btn-primary btn-sm">unlike</button></a></b>
     <%end%>
     <br>
     <% if @user.loggedin == true %>
@@ -37,7 +37,11 @@
     <%= link_to "Send a message", new_personal_message_path(receiver_id: @user.id) %>
   <% end %>
   <br>
-  <a href="/images/<%=session[:user_id]%>">Your pictures</a>
+  <% if @user.id == session[:user_id] %>
+    <a href="/images/<%=session[:user_id]%>">Your pictures</a>
+  <% else %>
+  <a href="/images/<%=@user.id%>"><%=@user.first_name%>'s pictures</a>
+  <%end%>
 </div>
 
 <hr>

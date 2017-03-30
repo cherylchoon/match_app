@@ -3,6 +3,8 @@ class SessionsController < ApplicationController
 
   def index
     @picture = Picture.find_by(user_id:session[:user_id])
+    @users = User.all
+
   end
 
   def new

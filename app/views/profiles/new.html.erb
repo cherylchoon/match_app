@@ -91,7 +91,8 @@
 <div class="row justify-content-md-center">
   <div class="col-md-12 form-group">
     <%= f.label "Upload your profile picture:" %><br>
-    <%= f.file_field :image, class: "btn btn-secondary" %>
+    <input type="file" name="image" accept="image/*"><br>
+    <input type="text" name="caption" placeholder="add caption">
   </div>
   <%= f.submit("Find Love!", class: "btn btn-info") %>
   <% end %>
