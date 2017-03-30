@@ -13,8 +13,8 @@ class User < ActiveRecord::Base
   has_many :user_liker, class_name: 'Like', foreign_key: 'liked_id'
   has_many :admirers, class_name:'User', through: "user_liker"
 
-  has_one :preference
-  has_one :profile
+  has_one :preference, dependent: :destroy
+  has_one :profile, dependent: :destroy
 
 
   # has_many :received_messages, class_name: 'PersonalMessage', foreign_key: 'receiver_id'

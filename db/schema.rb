@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170329235610) do
+ActiveRecord::Schema.define(version: 20170330153339) do
 
   create_table "conversations", force: :cascade do |t|
     t.integer  "sender_id"
@@ -60,11 +60,11 @@ ActiveRecord::Schema.define(version: 20170329235610) do
   add_index "likes", ["liker_id"], name: "index_likes_on_liker_id"
 
   create_table "matches", force: :cascade do |t|
-    t.boolean  "is_match",     default: false
+    t.boolean  "is_match"
     t.integer  "match_one_id"
     t.integer  "match_two_id"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
     t.integer  "score"
   end
 
@@ -109,8 +109,8 @@ ActiveRecord::Schema.define(version: 20170329235610) do
     t.string   "gender"
     t.integer  "min_age"
     t.integer  "max_age"
-    t.string   "height_min"
-    t.string   "height_max"
+    t.decimal  "height_min"
+    t.decimal  "height_max"
   end
 
   add_index "preferences", ["user_id"], name: "index_preferences_on_user_id"
@@ -137,7 +137,7 @@ ActiveRecord::Schema.define(version: 20170329235610) do
     t.integer  "user_id"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
-    t.string   "height"
+    t.decimal  "height"
   end
 
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id"
