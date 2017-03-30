@@ -11,6 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 20170330020600) do
 
   create_table "chat_messages", force: :cascade do |t|
@@ -33,6 +34,7 @@ ActiveRecord::Schema.define(version: 20170330020600) do
 
   add_index "chats", ["recipient_id"], name: "index_chats_on_recipient_id"
   add_index "chats", ["sender_id"], name: "index_chats_on_sender_id"
+
 
   create_table "conversations", force: :cascade do |t|
     t.integer  "sender_id"
@@ -86,11 +88,12 @@ ActiveRecord::Schema.define(version: 20170330020600) do
   add_index "likes", ["liker_id"], name: "index_likes_on_liker_id"
 
   create_table "matches", force: :cascade do |t|
-    t.boolean  "is_match",     default: false
+    t.boolean  "is_match"
     t.integer  "match_one_id"
     t.integer  "match_two_id"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "score"
   end
 
   add_index "matches", ["match_one_id"], name: "index_matches_on_match_one_id"
@@ -118,10 +121,6 @@ ActiveRecord::Schema.define(version: 20170330020600) do
   add_index "pictures", ["user_id"], name: "index_pictures_on_user_id"
 
   create_table "preferences", force: :cascade do |t|
-    t.integer  "min_height_feet"
-    t.integer  "min_height_inches"
-    t.integer  "max_height_feet"
-    t.integer  "max_height_inches"
     t.string   "body_type"
     t.string   "status"
     t.string   "has_kids"
@@ -133,11 +132,13 @@ ActiveRecord::Schema.define(version: 20170330020600) do
     t.text     "specifications"
     t.text     "essay"
     t.integer  "user_id"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
     t.string   "gender"
     t.integer  "min_age"
     t.integer  "max_age"
+    t.decimal  "height_min"
+    t.decimal  "height_max"
   end
 
   add_index "preferences", ["user_id"], name: "index_preferences_on_user_id"
@@ -148,8 +149,6 @@ ActiveRecord::Schema.define(version: 20170330020600) do
   end
 
   create_table "profiles", force: :cascade do |t|
-    t.integer  "height_feet"
-    t.integer  "height_inches"
     t.string   "body_type"
     t.string   "status"
     t.string   "has_kids"
@@ -166,6 +165,7 @@ ActiveRecord::Schema.define(version: 20170330020600) do
     t.integer  "user_id"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+    t.decimal  "height"
   end
 
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id"
@@ -182,21 +182,21 @@ ActiveRecord::Schema.define(version: 20170330020600) do
   end
 
   create_table "scores", force: :cascade do |t|
-    t.boolean  "height"
-    t.boolean  "body_type"
-    t.boolean  "relationship_status"
-    t.boolean  "has_kids"
-    t.boolean  "wants_kids"
-    t.boolean  "education"
-    t.boolean  "is_smoker"
-    t.boolean  "is_drinker"
-    t.boolean  "salary"
-    t.boolean  "ethnicity"
-    t.boolean  "religion"
-    t.boolean  "interests"
+    t.boolean  "height",              default: false
+    t.boolean  "body_type",           default: false
+    t.boolean  "relationship_status", default: false
+    t.boolean  "has_kids",            default: false
+    t.boolean  "wants_kids",          default: false
+    t.boolean  "education",           default: false
+    t.boolean  "is_smoker",           default: false
+    t.boolean  "is_drinker",          default: false
+    t.boolean  "salary",              default: false
+    t.boolean  "ethnicity",           default: false
+    t.boolean  "religion",            default: false
+    t.boolean  "interests",           default: false
     t.integer  "match_id"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
   end
 
   add_index "scores", ["match_id"], name: "index_scores_on_match_id"
@@ -211,8 +211,8 @@ ActiveRecord::Schema.define(version: 20170330020600) do
     t.date     "birthday"
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
-    t.boolean  "loggedin"
     t.boolean  "is_active",       default: true
+    t.boolean  "loggedin"
   end
 
 end

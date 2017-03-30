@@ -7,7 +7,7 @@ class ProfilesController < ApplicationController
     profile = Profile.new(profile_params)
     profile.user_id = session[:user_id]
     if profile.save
-      flash[:notice] = "You have successfully created a profile!"
+      flash[:notice] = "You have successfully created a profile! Please fill out your preferences."
       newimage = Picture.new(user_id:session[:user_id], image:params[:image], caption:params[:caption])
       if newimage.valid?
         newimage.save
@@ -44,6 +44,6 @@ class ProfilesController < ApplicationController
 
   private
   def profile_params
-    params.require(:profile).permit(:height_feet, :height_inches, :body_type, :status, :has_kids, :wants_kids, :education, :smoking, :drinking, :salary, :specifications, :essay, :image, ethnicity_ids:[], religion_ids:[], interest_ids:[])
+    params.require(:profile).permit(:height, :body_type, :status, :has_kids, :wants_kids, :education, :smoking, :drinking, :salary, :specifications, :essay, :image, ethnicity_ids:[], religion_ids:[], interest_ids:[])
   end
 end
