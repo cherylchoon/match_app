@@ -11,8 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170329235610) do
-
+ActiveRecord::Schema.define(version: 20170330153339) do
 
   create_table "conversations", force: :cascade do |t|
     t.integer  "sender_id"
@@ -115,8 +114,8 @@ ActiveRecord::Schema.define(version: 20170329235610) do
     t.string   "gender"
     t.integer  "min_age"
     t.integer  "max_age"
-    t.string   "height_min"
-    t.string   "height_max"
+    t.decimal  "height_min"
+    t.decimal  "height_max"
   end
 
   add_index "preferences", ["user_id"], name: "index_preferences_on_user_id"
@@ -143,7 +142,7 @@ ActiveRecord::Schema.define(version: 20170329235610) do
     t.integer  "user_id"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
-    t.string   "height"
+    t.decimal  "height"
   end
 
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id"
@@ -189,8 +188,8 @@ ActiveRecord::Schema.define(version: 20170329235610) do
     t.date     "birthday"
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
-    t.boolean  "loggedin"
     t.boolean  "is_active",       default: true
+    t.boolean  "loggedin"
   end
 
 end
