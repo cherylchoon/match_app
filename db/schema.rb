@@ -13,6 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20170329235610) do
 
+
   create_table "conversations", force: :cascade do |t|
     t.integer  "sender_id"
     t.integer  "receiver_id"
@@ -188,8 +189,8 @@ ActiveRecord::Schema.define(version: 20170329235610) do
     t.date     "birthday"
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
-    t.boolean  "is_active",       default: true
     t.boolean  "loggedin"
+    t.boolean  "is_active",       default: true
   end
 
 end

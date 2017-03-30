@@ -17,7 +17,8 @@ class ProfilesController < ApplicationController
 
   def show
     @user = User.find(session[:user_id])
-    @profile = Profile.find_by_user_id(session[:user_id])
+    @profile = Profile.find_by_user_id(params[:id])
+    @likeyet = Like.where(liker_id:session[:user_id], liked_id:params[:id])
   end
 
   def update
