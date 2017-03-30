@@ -18,10 +18,13 @@ class UsersController < ApplicationController
   end
 
   def show
+    @image = Profile.find_by(user_id: params[:id]).image
+    puts "------#{@image}"
     @user = User.find(params[:id])
     @profile = Profile.find_by(user_id: params[:id])
     @images = Picture.all
-    @profile = Profile.find_by_user_id(params[:id])
+    @profileimg = Picture.find_by(user_id:params[:id])
+    @likeyet = Like.where(liker_id:session[:user_id], liked_id:params[:id])
   end
 
   def edit

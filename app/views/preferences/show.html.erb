@@ -2,7 +2,9 @@
 
 <hr>
 
-<h5>Height: From <%= @preferences.min_height_feet%>'<%= @preferences.min_height_inches%>" to <%= @preferences.max_height_feet%>'<%= @preferences.max_height_inches%>"</h5>
+<h5>Height: From <%= @preferences.min_height%> to <%= @preferences.max_height%></h5>
+<h5>Age: From <%= @preferences.min_age%> to <%= @preferences.max_age %></h5>
+<h5>Gender: <%= @preferences.gender %></h5>
 <h5>Body Type: <%= @preferences.body_type%></h5>
 <h5>Relationship Status: <%= @preferences.status%></h5>
 <h5>Have Kids?: <%= @preferences.has_kids%></h5>

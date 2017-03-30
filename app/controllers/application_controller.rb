@@ -19,5 +19,7 @@ class ApplicationController < ActionController::Base
     redirect_to login_path unless session[:user_id]
   end
 
+
+
   helper_method :current_user
 end

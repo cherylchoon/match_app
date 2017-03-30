@@ -8,13 +8,13 @@
 </div>
 
 <div class="row">
-  <div class="col-md-4">
+  <div class="col-md-3">
     <h4><%= "#{@user.first_name} #{@user.last_name}" %></h4>
 
     <% if @profileimg %>
     <img src="<%=@profileimg.image_url(:profile)%>" alt="?.png">
     <%else%>
-    <p>--- Profile Pic Here ----</p>
+      <%= image_tag("default.jpeg")%>
     <%end%>
 
     <% if @user.id != session[:user_id] %>
@@ -22,15 +22,31 @@
     <% end %>
     <br>
     <% if @user.id == session[:user_id] %>
-      <a href="/profiles/<%= @user.id %>/edit">Edit Your Profile</a>
+      <a href="/profiles/<%= @user.id %>/edit">Edit Your Profile</a></br>
+      <a href="/preferences/<%= @user.id %>/edit">Edit Your Preferences</a>
     <% end %>
     <br>
     <a href="/images/<%=session[:user_id]%>">Your pictures</a>
     <hr>
   </div>
 
+  <% if @user.id != session[:user_id] %>
+    <% if @likeyet.empty? %>
+      <a href="/likes/add/<%=@user.id%>"><button>Like <%=@user.first_name%>'s page</button></a>
+    <%else%>
+      <b><i>You like <%=@user.first_name%></i> - <a href="/likes/remove/<%=@likeyet[0].id%>">unlike</a></b>
+    <%end%>
+    <br>
+    <% if @user.loggedin == true %>
+      <%=@user.first_name%> is logged in right now!
+      <br>
+    <%else%>
+      <%=@user.first_name%> was last logged in on <%= @user.updated_at.strftime("") %>
+      <br>
+    <%end%>
+  <% end %>
   <div class="col-md-4">
-    <span class="user-attr">Height:</span> <span class="profile-field"><%= @profile.height_feet%>' <%= @profile.height_inches%>"</span>
+    <span class="user-attr">Height:</span> <span class="profile-field"><%= @profile.height %></span>
     <span class="user-attr">Body Type:</span> <span class="profile-field"><%= @profile.body_type%></span>
     <span class="user-attr">Relationship Status:</span> <span class="profile-field"><%= @profile.status%></span>
     <span class="user-attr">Have Kids:</span> <span class="profile-field"><%= @profile.has_kids%></span>

@@ -4,6 +4,11 @@ Rails.application.routes.draw do
   get "/login" => "sessions#new"
   put "/deactivate/:id" => "users#deactivate"
 
+  #likes
+  get "/likes/add/:id" => "likes#add"
+  get "/likes/remove/:id" => "likes#remove"
+
+
   resources :users, except: [:index]
   resources :sessions, only: [:create, :destroy]
 

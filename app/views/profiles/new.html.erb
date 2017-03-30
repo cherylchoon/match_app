@@ -6,10 +6,9 @@
 <div class="row">
   <div class="col-md-3">
     <%= form_for @profile, :html => { :multipart => true } do |f| %>
-      <div class="form-inline">
+      <div class="form-group">
         <%= f.label "Height:" %>
-        <%= f.select :height_feet, options_for_select(Choices['height_feet']), {}, class: "form-control mb-2 mr-sm-2 mb-sm-0"%> feet
-        <%= f.select :height_inches, options_for_select(Choices['height_inches']), {}, class: "form-control mb-2 mr-sm-2 mb-sm-0" %> inches
+        <%= f.select :height, options_for_select(Choices['height']), {}, class: "form-control" %>
       </div>
       <div class="form-group">
         <%= f.label "Body Type:" %>

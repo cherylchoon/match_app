@@ -40,6 +40,6 @@ class PreferencesController < ApplicationController
   end
 
   def preference_params
-    params.require(:preference).permit(:min_height_feet, :min_height_inches, :max_height_feet, :max_height_inches, :min_age, :max_age, :gender, :body_type, :status, :has_kids, :wants_kids, :education, :smoking, :drinking, :salary, ethnicity_ids:[], religion_ids:[], interest_ids:[])
+    params.require(:preference).permit(:min_height, :max_height, :min_age, :max_age, :gender, :body_type, :status, :has_kids, :wants_kids, :education, :smoking, :drinking, :salary, ethnicity_ids:[], religion_ids:[], interest_ids:[])
   end
 end

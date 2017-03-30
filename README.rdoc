@@ -4,6 +4,6 @@ Before running `bundle install` run `sudo apt-get install libmagickwand-dev`
 
 Sizing options are available for images; syntax:
 
-  <img src="<%=img.image_url(:tiny)%>" alt="logo.png">
-  <img src="<%=img.image_url(:profile)%>" alt="logo.png">
-  <img src="<%=img.image_url(:thumb)%>" alt="logo.png">
+  <img src="<%={{@obj}}.image_url(:tiny)%>" alt="logo.png">
+  <img src="<%={{@obj}}.image_url(:profile)%>" alt="logo.png">
+  <img src="<%={{@obj}}.image_url(:thumb)%>" alt="logo.png">
