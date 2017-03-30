@@ -1,17 +1,15 @@
 <div class="row">
   <% if flash[:notice] %>
-    <%= flash[:notice] %>
+    <p class="text-success"><%= flash[:notice] %></p>
   <% end %>
-  <hr>
+</div>
+<div class="row">
   <div class="col-md-3">
     <%= form_for @profile, :html => { :multipart => true } do |f| %>
-      <div class="form-group">
-        <%= f.label "Height (feet):" %>
-        <%= f.select :height_feet, options_for_select(Choices['height_feet']), {}, class: "form-control"%>
-      </div>
-      <div class="form-group">
-        <%= f.label "Height (inches):" %>
-        <%= f.select :height_inches, options_for_select(Choices['height_inches']), {}, class: "form-control" %>
+      <div class="form-inline">
+        <%= f.label "Height:" %>
+        <%= f.select :height_feet, options_for_select(Choices['height_feet']), {}, class: "form-control mb-2 mr-sm-2 mb-sm-0"%> feet
+        <%= f.select :height_inches, options_for_select(Choices['height_inches']), {}, class: "form-control mb-2 mr-sm-2 mb-sm-0" %> inches
       </div>
       <div class="form-group">
         <%= f.label "Body Type:" %>
@@ -83,12 +81,8 @@
 
 <div class="row">
   <div class="col-md-6 form-group">
-    <%= f.label "Are you looking for something specific?" %><br>
-    <%= f.text_area(:specifications, cols: 40, rows: 3) %>
-  </div>
-  <div class="col-md-6 form-group float-right">
     <%= f.label "About yourself:" %><br>
-    <%= f.text_area(:essay, cols: 40, rows: 3) %>
+    <%= f.text_area(:essay, cols: 60, rows: 3) %>
   </div>
 </div>
 

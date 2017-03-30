@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      flash[:notice] = ["You have registered successfully, please fill in the questionaire."]
+      flash[:notice] = "You have registered successfully, please fill in the questionaire."
       session[:user_id] = @user.id
       redirect_to new_profile_path
     else

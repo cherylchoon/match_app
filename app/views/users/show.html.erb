@@ -1,54 +1,65 @@
-<% if flash[:notice] %>
-  <%= flash[:notice] %>
-<% end %>
-<a href="/">Return to Dashboard</a>
-<hr>
-<div class="col-md-4">
-  <h4><%= "#{@user.first_name} #{@user.last_name}" %></h4>
-
-  <% if @profileimg %>
-  <img src="<%=@profileimg.image_url(:profile)%>" alt="?.png">
-  <%else%>
-  <p>--- Profile Pic Here ----</p>
-  <%end%>
-
-  <% if @user.id != session[:user_id] %>
-    <%= link_to "Send a message", new_personal_message_path(receiver_id: @user.id) %>
+<div class="row">
+  <% if flash[:notice] %>
+    <%= flash[:notice] %>
   <% end %>
-  <br>
-  <a href="/images/<%=session[:user_id]%>">Your pictures</a>
+  <!-- <br>
+  <a href="/" class="float-right">Return to Dashboard</a> -->
+  <hr>
 </div>
 
-<hr>
+<div class="row">
+  <div class="col-md-4">
+    <h4><%= "#{@user.first_name} #{@user.last_name}" %></h4>
 
-<h4>Your Profile</h4>
-<hr>
+    <% if @profileimg %>
+    <img src="<%=@profileimg.image_url(:profile)%>" alt="?.png">
+    <%else%>
+    <p>--- Profile Pic Here ----</p>
+    <%end%>
 
-<h5>Height: <%= @profile.height_feet%>'<%= @profile.height_inches%>"</h5>
-<h5>Body Type: <%= @profile.body_type%></h5>
-<h5>Relationship Status: <%= @profile.status%></h5>
-<h5>Have Kids?: <%= @profile.has_kids%></h5>
-<h5>Want Kids?: <%= @profile.wants_kids%></h5>
-<h5>Education: <%= @profile.education%></h5>
-<h5>Smoker?: <%= @profile.smoking%></h5>
-<h5>Drinker?: <%= @profile.drinking%></h5>
-<h5>Ethnicity: </h5>
-<% @profile.ethnicities.each do |e| %>
-  <h5> -- <%= e.name %></h5>
-<% end %>
-<h5>Religions:</h5>
-<% @profile.religions.each do |r| %>
-    <h5> ** <%= r.name %></h5>
-<% end %>
-<h5>Current Salary Range: Around <%= @profile.salary%> per year</h5>
-<h5>Interests: </h5>
-<% @profile.interests.each do |i| %>
-  <h5> + <%= i.name %></h5>
-<% end %>
-<h5>Specifications: <%= @profile.specifications%></h5>
-<h5>Essay: <%= @profile.essay%></h5>
+    <% if @user.id != session[:user_id] %>
+      <%= link_to "Send a message", new_personal_message_path(receiver_id: @user.id) %>
+    <% end %>
+    <br>
+    <% if @user.id == session[:user_id] %>
+      <a href="/profiles/<%= @user.id %>/edit">Edit Your Profile</a>
+    <% end %>
+    <br>
+    <a href="/images/<%=session[:user_id]%>">Your pictures</a>
+    <hr>
+  </div>
 
-<hr>
-<% if @user.id == session[:user_id] %>
-  <a href="/profiles/<%= @user.id %>/edit">Edit Your Profile</a>
-<% end %>
+  <div class="col-md-4">
+    <span class="user-attr">Height:</span> <span class="profile-field"><%= @profile.height_feet%>' <%= @profile.height_inches%>"</span>
+    <span class="user-attr">Body Type:</span> <span class="profile-field"><%= @profile.body_type%></span>
+    <span class="user-attr">Relationship Status:</span> <span class="profile-field"><%= @profile.status%></span>
+    <span class="user-attr">Have Kids:</span> <span class="profile-field"><%= @profile.has_kids%></span>
+    <span class="user-attr">Want Kids:</span> <span class="profile-field"><%= @profile.wants_kids%></span>
+    <span class="user-attr">Education:</span> <span class="profile-field"><%= @profile.education%></span>
+    <span class="user-attr">Smoker:</span> <span class="profile-field"><%= @profile.smoking%></span>
+    <span class="user-attr">Drinker:</span> <span class="profile-field"><%= @profile.drinking%></span>
+  </div>
+
+  <div class="col-md-4">
+    <span class="user-attr">Ethnicity:</span>
+    <% @profile.ethnicities.each do |e| %>
+      <span class="profile-field"> <%= e.name %> </span>
+    <% end %>
+
+    <span class="user-attr">Religions:</span>
+    <% @profile.religions.each do |r| %>
+        <span class="profile-field"> <%= r.name %> </span>
+    <% end %>
+    <span class="user-attr">Current Salary Range:</span>
+    <span class="profile-field">Around <%= @profile.salary%> per year</span>
+
+    <span class="user-attr">Interests: </span>
+    <% @profile.interests.each do |i| %>
+      <span class="profile-field"> + <%= i.name %> </span>
+    <% end %>
+    <span class="user-attr">Specifications:</span>
+    <span class="profile-field"><%= @profile.specifications%></span>
+    <span class="user-attr">Essay:</span>
+    <span class="profile-field"><%= @profile.essay%></span>
+  </div>
+</div>

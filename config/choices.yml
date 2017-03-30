@@ -25,18 +25,18 @@ max_age:
   - 51
   - 52
 gender:
-  - male
-  - female
+  - Male
+  - Female
 body_type:
-  - slender
-  - average
-  - athletic/toned
-  - heavyset
+  - Slender
+  - Average
+  - Athletic/Toned
+  - Heavyset
 relationship_status:
-  - never married
-  - currently separated
-  - divorced
-  - widow/widower
+  - Never married
+  - Currently separated
+  - Divorced
+  - Widow/widower
 has_kids:
   - Don't/doesn't have kids
   - Yes, but they live away from home

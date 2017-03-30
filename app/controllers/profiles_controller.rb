@@ -7,7 +7,7 @@ class ProfilesController < ApplicationController
     profile = Profile.new(profile_params)
     profile.user_id = session[:user_id]
     if profile.save
-      flash[:notice] = "You have successfully created a profile!"
+      flash[:notice] = "You have successfully created a profile! Please fill out your preferences."
       redirect_to "/preferences/new"
     else
       flash[:errors] = profile.errors.full_messages
