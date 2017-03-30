@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   get "/likes/add/:id" => "likes#add"
   get "/likes/remove/:id" => "likes#remove"
 
+  #search page
+  get '/search' => "matches#search"
 
   resources :users, except: [:index]
   resources :sessions, only: [:create, :destroy]

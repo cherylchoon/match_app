@@ -25,6 +25,19 @@ class MatchesController < ApplicationController
   def show
   end
 
+  def search
+    @users = nil
+    if params[:gender] || params[:min_age] || params[:max_age]
+      @search_results = User.gender(params[:gender]).age_range(params[:min_age], params[:max_age])
+      if @search_results.first.nil?
+        puts "----#{@search_results.first.nil?}"
+      else
+        puts "----#{@search_results.first.nil?}"
+      end
+      # redirect_to search_path
+    end
+  end
+
   protected
     def find_age(birthday)
       age = Date.today.year - birthday.year
