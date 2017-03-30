@@ -11,8 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 20170330020600) do
+ActiveRecord::Schema.define(version: 20170330153339) do
 
   create_table "chat_messages", force: :cascade do |t|
     t.text     "body"
@@ -34,7 +33,6 @@ ActiveRecord::Schema.define(version: 20170330020600) do
 
   add_index "chats", ["recipient_id"], name: "index_chats_on_recipient_id"
   add_index "chats", ["sender_id"], name: "index_chats_on_sender_id"
-
 
   create_table "conversations", force: :cascade do |t|
     t.integer  "sender_id"
@@ -88,11 +86,11 @@ ActiveRecord::Schema.define(version: 20170330020600) do
   add_index "likes", ["liker_id"], name: "index_likes_on_liker_id"
 
   create_table "matches", force: :cascade do |t|
-    t.boolean  "is_match"
+    t.boolean  "is_match",     default: false
     t.integer  "match_one_id"
     t.integer  "match_two_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
     t.integer  "score"
   end
 
@@ -211,8 +209,8 @@ ActiveRecord::Schema.define(version: 20170330020600) do
     t.date     "birthday"
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
-    t.boolean  "is_active",       default: true
     t.boolean  "loggedin"
+    t.boolean  "is_active",       default: true
   end
 
 end
