@@ -49,7 +49,7 @@
           <%= f.label "Ethnicity:" %><br />
           <%= f.collection_check_boxes :ethnicity_ids, Ethnicity.all, :id, :name do |b| %>
         <div class="collection-check-box">
-          <%= b.check_box %>
+          <%= b.check_box class: "single-checkbox" %>
           <%= b.label %>
         </div>
       <% end %>
@@ -90,6 +90,6 @@
     <%= f.label "Upload your profile picture:" %><br>
     <%= f.file_field :image, class: "btn btn-secondary" %>
   </div>
-  <%= f.submit("Find Love!", class: "btn btn-info") %>
+  <%= submit_tag("Find Love!", class: "btn btn-info") %>
   <% end %>
 </div>

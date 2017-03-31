@@ -24,6 +24,11 @@
 
   <div class="col-md-5">
   <!-- main content -->
+  <% if @match %>
+    <% @match.each do |m| %>
+      <p><%= "#{m.first_name} #{m.last_name}"%></p>
+    <% end %>
+  <% end %>
   </div>
 
   <div class="col-md-4">

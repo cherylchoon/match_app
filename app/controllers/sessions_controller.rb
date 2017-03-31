@@ -2,7 +2,14 @@ class SessionsController < ApplicationController
   skip_before_action :require_login, only: [:new, :create]
 
   def index
-    @match = Match.all
+    @match = []
+    @mymatches = Match.where('match_one_id=?', session[:user_id])
+    @mymatches.each do |m|
+      if m.is_match
+        @match << m.match_two
+      end #end if
+    end #end @match loop
+    
   end
 
   def new
