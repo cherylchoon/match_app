@@ -25,17 +25,13 @@ class UsersController < ApplicationController
   def show
     # @images = Picture.where(user_id:params[:id])
     # @images = Picture.all
-
     @user = User.find(params[:id])
     @profile = Profile.find_by(user_id: params[:id])
     @profileimg = Picture.find_by(user_id:params[:id])
     @likeyet = Like.where(liker_id:session[:user_id], liked_id:params[:id])
     @time_now = Time.now
-
-    # @user_location = [@user.lat,@user.lng]
-    # puts "----User Location: #{@user_location}"
-    # @nearby_users = User.within(50, :origin => @user_location).all
-    # puts "----Nearby Users: #{@nearby_users.first.first_name} #{@nearby_users.second.first_name}"
+    @user_location = [@user.lat,@user.lng]
+    @nearby_users = User.within(50, :origin => @user_location).all
   end
 
   def edit

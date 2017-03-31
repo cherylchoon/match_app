@@ -1,20 +1,22 @@
-<div class="col-md-6">
-  <% if flash[:notice] %>
-    <% flash[:notice].each do |n| %>
-      <p class="text-success"><%= n %></p>
+<div class="container">
+  <div class="col-md-7">
+    <% if flash[:notice] %>
+      <% flash[:notice].each do |n| %>
+        <p class="text-success"><%= n %></p>
+      <% end %>
     <% end %>
-  <% end %>
-  <h4>New message to <%= "#{@receiver.first_name} #{@receiver.last_name}" %></h4>
+    <h4>New message to <%= "#{@receiver.first_name} #{@receiver.last_name}" %></h4>
 
-  <%= form_for @personal_message do |f| %>
-    <div class="form-group">
-      <%= hidden_field_tag 'receiver_id', @receiver.id %>
+    <%= form_for @personal_message do |f| %>
+      <div class="form-group">
+        <%= hidden_field_tag 'receiver_id', @receiver.id %>
 
-      <%= f.label "To:" %>
-      <%= f.text_field(:receiver, :value => "#{@receiver.first_name} #{@receiver.last_name}") %>
-      <%= f.text_area(:content, cols: 62, rows: 5)%>
+        <%= f.label "To:" %>
+        <%= f.text_field(:receiver, :value => "#{@receiver.first_name} #{@receiver.last_name}") %>
+        <%= f.text_area(:content, cols: 60, rows: 5)%>
 
-      <%= f.submit "Send", class: 'btn btn-outline-info float-right'%>
-    </div>
-  <% end %>
+        <%= f.submit "Send", class: 'btn btn-outline-info float-right'%>
+      </div>
+    <% end %>
+  </div>
 </div>
