@@ -7,3 +7,14 @@ Sizing options are available for images; syntax:
   <img src="<%={{@obj}}.image_url(:tiny)%>" alt="logo.png">
   <img src="<%={{@obj}}.image_url(:profile)%>" alt="logo.png">
   <img src="<%={{@obj}}.image_url(:thumb)%>" alt="logo.png">
+
+
+For Live Chat:
+
+  *Install private_pub gem after bundle install.
+
+$ rails g private_pub:install
+
+  run Rackserver in seperate terminal
+
+$ rackup private_pub.ru -s thin -E production

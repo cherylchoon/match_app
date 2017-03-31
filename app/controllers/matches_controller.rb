@@ -1,11 +1,20 @@
 class MatchesController < ApplicationController
   def create
+    puts
+    puts "------------- hit match_controller Create route here -----------------"
+    puts
     @match_one = User.find(current_user.id)
     @possible_matches = User.where('gender=? AND id != ?', @match_one.preference.gender, @match_one.id)
+    puts
+    puts "------------- #{@possible_matches} -----------------"
+    puts
 
     @possible_matches.each do |m|
       @match_score = 0
       @age = find_age(m.birthday)
+      puts
+      puts "----------------- #{@age} ---------------------"
+      puts
       if @age >= @match_one.preference.min_age && @age <= @match_one.preference.max_age
         @match = Match.create(match_one_id: @match_one.id, match_two_id: m.id)
       end

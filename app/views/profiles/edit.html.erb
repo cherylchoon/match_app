@@ -1,5 +1,5 @@
 <div class="row">
-  <!-- <a href="/">Return to Dashboard</a></br> -->
+
   <h4>Edit Your Profile</h4>
   <hr>
 </div>
@@ -8,7 +8,7 @@
       <%= form_for @profile, :html => { :multipart => true } do |f| %>
         <div class="form-group">
           <%= f.label "Height:" %>
-          <%= f.select :height, options_for_select(Choices['height']), {}, class: "form-control" %>
+          <%= f.select :height, options_for_select([["4'8\"", 4.08], ["4'9\"", 4.09], ["4'10\"", 4.10], ["4'11\"", 4.11], ["5'0\"", 5.00], ["5'1\"", 5.01], ["5'2\"", 5.02], ["5'3\"", 5.03], ["5'4\"", 5.04], ["5'5\"", 5.05], ["5'6\"", 5.06], ["5'7\"", 5.07], ["5'8\"", 5.08], ["5'9\"", 5.09], ["5'10\"", 5.10], ["5'11\"", 5.11], ["6'0\"", 6.00], ["6'1\"", 6.01], ["6'2\"", 6.02], ["6'3\"", 6.03], ["6'4\"", 6.04], ["6'5\"", 6.05], ["6'6\"", 6.06], ["6'7\"", 6.07], ["6'8\"", 6.08], ["6'9\"", 6.09], ["6'10\"", 6.10]]), {}, class: "form-control" %>
         </div>
         <div class="form-group">
           <%= f.label "Body Type:" %>
@@ -90,6 +90,6 @@
       <%= f.label "Upload your profile picture:" %><br>
       <%= f.file_field :image, class: "btn btn-secondary" %>
     </div>
-    <%= f.submit("Update Profile!", class: "btn btn-info") %>
+    <%= submit_tag("Update Profile!", class: "btn btn-info") %>
     <% end %>
   </div>

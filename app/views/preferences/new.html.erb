@@ -80,7 +80,7 @@
         <%= f.label "Ethnicity:" %><br />
         <%= f.collection_check_boxes :ethnicity_ids, Ethnicity.all, :id, :name do |b| %>
         <div class="collection-check-box">
-          <%= b.check_box %>
+          <%= b.check_box class: "single-checkbox" %>
           <%= b.label %>
         </div>
         <% end %>

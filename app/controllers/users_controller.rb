@@ -14,6 +14,7 @@ class UsersController < ApplicationController
     if @user.save
       flash[:notice] = "You have registered successfully, please fill in the questionaire."
       session[:user_id] = @user.id
+      @user.update(loggedin: true)
       redirect_to new_profile_path
     else
       flash[:errors] = @user.errors.full_messages
