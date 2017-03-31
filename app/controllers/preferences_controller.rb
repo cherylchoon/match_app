@@ -23,7 +23,7 @@ class PreferencesController < ApplicationController
     @preferences = Preference.find_by_user_id(params[:id])
     unless @preferences
       flash[:notice] = "You need to set your preferences first!"
-      redirect_to :back
+      redirect_to new_preference_path
     end
   end
 

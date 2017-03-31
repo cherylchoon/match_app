@@ -35,6 +35,8 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
+    area (0.10.0)
+      fastercsv (~> 1.5)
     arel (6.0.4)
     bcrypt (3.1.11)
     binding_of_caller (0.7.2)
@@ -54,11 +56,13 @@ GEM
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.5)
     debug_inspector (0.0.2)
-    emoji (1.0.7)
-      json
     erubis (2.7.0)
     execjs (2.7.0)
-    gemoji (3.0.0)
+    fastercsv (1.5.5)
+    geokit (1.11.0)
+    geokit-rails (2.2.0)
+      geokit (~> 1.5)
+      rails (>= 3.0)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     hirb (0.7.3)
@@ -158,12 +162,12 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  area
   bcrypt (~> 3.1.7)
   byebug
   carrierwave (~> 1.0)
   coffee-rails (~> 4.1.0)
-  emoji
-  gemoji
+  geokit-rails
   hirb
   jbuilder (~> 2.0)
   jquery-rails
