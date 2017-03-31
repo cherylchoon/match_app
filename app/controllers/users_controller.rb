@@ -23,18 +23,15 @@ class UsersController < ApplicationController
   end
 
   def show
-    @image = Profile.find_by(user_id: params[:id]).image
+    # @images = Picture.where(user_id:params[:id])
+    # @images = Picture.all
     @user = User.find(params[:id])
     @profile = Profile.find_by(user_id: params[:id])
-    @images = Picture.all
     @profileimg = Picture.find_by(user_id:params[:id])
     @likeyet = Like.where(liker_id:session[:user_id], liked_id:params[:id])
-
-
+    @time_now = Time.now
     @user_location = [@user.lat,@user.lng]
-    puts "----User Location: #{@user_location}"
     @nearby_users = User.within(50, :origin => @user_location).all
-    puts "----Nearby Users: #{@nearby_users.first.first_name} #{@nearby_users.second.first_name}"
   end
 
   def edit
@@ -47,6 +44,17 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
+    @user.update(user_params)
+    lat = @user[:zip_code].to_s.to_lat
+    @user.lat = lat
+    lng = @user[:zip_code].to_s.to_lon
+    @user.lng = lng
+    if @user.save
+      flash[:notice] = "User information successfully updated"
+    else
+      flash[:errors] = @user.errors.full_messages
+    end
+    redirect_to :back
   end
 
   def destroy

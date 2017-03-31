@@ -1,58 +1,39 @@
 <div class="row">
   <% if flash[:notice] %>
-    <%= flash[:notice] %>
+    <p class="text-success"><%= flash[:notice] %></p>
   <% end %>
-  <!-- <br>
-  <a href="/" class="float-right">Return to Dashboard</a> -->
+  <!-- <a href="/" class="float-right">Return to Dashboard</a>  -->
   <hr>
 </div>
 
 <div class="row">
-  <div class="col-md-3">
+  <div class="col-md-4">
     <h4><%= "#{@user.first_name} #{@user.last_name}" %></h4>
-
     <% if @profileimg %>
-    <img src="<%=@profileimg.image_url(:profile)%>" alt="?.png">
+      <%= image_tag(@profileimg.image_url(:profile), class: "profile-pic") %>
     <%else%>
       <%= image_tag("default.jpeg")%>
     <%end%>
-
-    <% if @user.id != session[:user_id] %>
-      <%= link_to "Send a message", new_personal_message_path(receiver_id: @user.id) %>
-    <% end %>
-    <br>
+  </br></br>
+    <% if @user.loggedin == true %>
+      <a href="#" class="btn btn-success btn-sm disabled" role="button" aria-disabled="true">Online</a>
+    <%else%>
+      <span id="online-status">Last logged on: <strong><%= distance_of_time_in_words(@user.updated_at, @time_now) %> ago</strong></span>
+    <%end%>
+    </br>
     <% if @user.id == session[:user_id] %>
       <a href="/profiles/<%= @user.id %>/edit">Edit Your Profile</a></br>
-      <a href="/preferences/<%= @user.id %>/edit">Edit Your Preferences</a>
+      <a href="/preferences/<%= @user.id %>/edit">Edit Your Preferences</a></br>
+      <a href="/images/<%=session[:user_id]%>">Upload Pictures</a>
+    <% else %>
+      <%= link_to "Send a message", new_personal_message_path(receiver_id: @user.id) %></br>
+      <% if @likeyet.empty? %>
+        <a href="/likes/add/<%= @user.id %>"><button type="button" class="btn btn-primary btn-sm">Like <%=@user.first_name%></button></a>
+      <%else%>
+        <a href="/likes/remove/<%= @likeyet[0].id %>"><button type="button" class="btn btn-info btn-sm">Unlike</button></a>
+      <%end%>
     <% end %>
-    <br>
-    <a href="/images/<%=session[:user_id]%>">Your pictures</a>
-    <hr>
   </div>
-
-  <% if @user.id != session[:user_id] %>
-    <% if @likeyet.empty? %>
-      <a href="/likes/add/<%=@user.id%>"><button type="button" class="btn btn-success">Like <%=@user.first_name%>'s page</button></a>
-    <%else%>
-      <b><i>You like <%=@user.first_name%></i> - <a href="/likes/remove/<%=@likeyet[0].id%>"><button type="button" class="btn btn-primary btn-sm">unlike</button></a></b>
-    <%end%>
-    <br>
-    <% if @user.loggedin == true %>
-      <%=@user.first_name%> is logged in right now!
-      <br>
-    <%else%>
-      <%=@user.first_name%> was last logged in on <%= @user.updated_at.strftime("") %>
-      <br>
-    <%end%>
-  <% end %>
-
-  <br>
-  <% if @user.id == session[:user_id] %>
-    <a href="/images/<%=session[:user_id]%>">Your pictures</a>
-  <% else %>
-  <a href="/images/<%=@user.id%>"><%=@user.first_name%>'s pictures</a>
-  <%end%>
-</div>
 
   <div class="col-md-4">
     <span class="user-attr">Height:</span> <span class="profile-field"><%= @profile.height %></span>
@@ -68,23 +49,26 @@
   <div class="col-md-4">
     <span class="user-attr">Ethnicity:</span>
     <% @profile.ethnicities.each do |e| %>
-      <span class="profile-field"> <%= e.name %> </span>
+      <span class="profile-field"> <%= image_tag("baby-blue-heart.png") %> <%= e.name %> </span>
     <% end %>
 
     <span class="user-attr">Religions:</span>
     <% @profile.religions.each do |r| %>
-        <span class="profile-field"> <%= r.name %> </span>
+        <span class="profile-field"> <%= image_tag("baby-blue-heart.png") %> <%= r.name %> </span>
     <% end %>
     <span class="user-attr">Current Salary Range:</span>
-    <span class="profile-field">Around <%= @profile.salary%> per year</span>
+    <span class="profile-field"><%= @profile.salary%> </span>
 
     <span class="user-attr">Interests: </span>
     <% @profile.interests.each do |i| %>
-      <span class="profile-field"> + <%= i.name %> </span>
+      <span class="profile-field"> <%= image_tag("baby-blue-heart.png") %> <%= i.name %> </span>
     <% end %>
     <span class="user-attr">Specifications:</span>
     <span class="profile-field"><%= @profile.specifications%></span>
     <span class="user-attr">Essay:</span>
     <span class="profile-field"><%= @profile.essay%></span>
   </div>
+</div>
+
+
 </div>

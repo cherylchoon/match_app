@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   root "sessions#index"
-
+  get "/homepage" => "sessions#home_page"
+  # create dummy user
+  get "/createuser" => "sessions#createuser"
+  post "/users/:id/update" => "users#update"
   get "/login" => "sessions#new"
   put "/deactivate/:id" => "users#deactivate"
 
@@ -27,5 +30,5 @@ Rails.application.routes.draw do
   resources :chats do
     resources :chat_messages
   end
-  
+
 end

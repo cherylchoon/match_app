@@ -21,7 +21,7 @@ class ProfilesController < ApplicationController
 
   def show
     @user = User.find(session[:user_id])
-    @profile = Profile.find_by_user_id(params[:id])
+    @profile = Profile.find_by_user_id(session[:user_id])
     @likeyet = Like.where(liker_id:session[:user_id], liked_id:params[:id])
   end
 
@@ -38,8 +38,13 @@ class ProfilesController < ApplicationController
   end
 
   def edit
-    @user = User.find(session[:user_id])
-    @profile = Profile.find_by_user_id(session[:user_id])
+    if @profile
+      @user = User.find(session[:user_id])
+      @profile = Profile.find_by_user_id(session[:user_id])
+    else
+      flash[:notice] = "Please create a profile."
+      redirect_to new_profile_path
+    end
   end
 
   private
