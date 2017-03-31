@@ -1,113 +1,116 @@
-<div class="row">
-  <% if flash[:notice] %>
-    <p class="text-success"><%= flash[:notice] %></p>
-  <% end %>
-  <a href="/"><button type="button" class="btn btn-link">Skip for now</button></a>
-</div>
-
-<div class="row">
-  <div class="col-md-4">
-    <h4>Preferences</h4>
-    <%= form_for @preferences do |f| %>
-      <div class="form-group">
-        <%= f.label "Minimum Height:" %>
-        <%= f.select :height_min, options_for_select([["4'8\"", 4.08], ["4'9\"", 4.09], ["4'10\"", 4.10], ["4'11\"", 4.11], ["5'0\"", 5.00], ["5'1\"", 5.01], ["5'2\"", 5.02], ["5'3\"", 5.03], ["5'4\"", 5.04], ["5'5\"", 5.05], ["5'6\"", 5.06], ["5'7\"", 5.07], ["5'8\"", 5.08], ["5'9\"", 5.09], ["5'10\"", 5.10], ["5'11\"", 5.11], ["6'0\"", 6.00], ["6'1\"", 6.01], ["6'2\"", 6.02], ["6'3\"", 6.03], ["6'4\"", 6.04], ["6'5\"", 6.05], ["6'6\"", 6.06], ["6'7\"", 6.07], ["6'8\"", 6.08], ["6'9\"", 6.09], ["6'10\"", 6.10]]), {}, class: "custom-select mb-2 mr-sm-2 mb-sm-0" %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label "Maximum Height:" %>
-        <%= f.select :height_max, options_for_select([["4'8\"", 4.08], ["4'9\"", 4.09], ["4'10\"", 4.10], ["4'11\"", 4.11], ["5'0\"", 5.00], ["5'1\"", 5.01], ["5'2\"", 5.02], ["5'3\"", 5.03], ["5'4\"", 5.04], ["5'5\"", 5.05], ["5'6\"", 5.06], ["5'7\"", 5.07], ["5'8\"", 5.08], ["5'9\"", 5.09], ["5'10\"", 5.10], ["5'11\"", 5.11], ["6'0\"", 6.00], ["6'1\"", 6.01], ["6'2\"", 6.02], ["6'3\"", 6.03], ["6'4\"", 6.04], ["6'5\"", 6.05], ["6'6\"", 6.06], ["6'7\"", 6.07], ["6'8\"", 6.08], ["6'9\"", 6.09], ["6'10\"", 6.10]]), {}, class: "custom-select mb-2 mr-sm-2 mb-sm-0" %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label "Minimum Age:" %>
-        <%= f.select :min_age, options_for_select((18..100).step(1).to_a.map{|s| ["#{s}", s]}), {}, class: "custom-select mb-2 mr-sm-2 mb-sm-0" %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label "Maximum Age:" %>
-        <%= f.select :max_age, options_for_select((18..100).step(1).to_a.map{|s| ["#{s}", s]}), {}, class: "custom-select mb-2 mr-sm-2 mb-sm-0" %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label "Gender:" %>
-        <%= f.select :gender, options_for_select(Choices['gender']), {}, class: "form-control" %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label "Body Type:" %>
-        <%= f.select :body_type, options_for_select(Choices['body_type']), {}, class: "form-control" %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label "Relationship Status:" %>
-        <%= f.select :status, options_for_select(Choices['relationship_status']), {}, class: "form-control" %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label "Do you have kids?" %>
-        <%= f.select :has_kids, options_for_select(Choices['has_kids']), {}, class: "form-control" %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label "Do you want kids?" %>
-        <%= f.select :wants_kids, options_for_select(Choices['wants_kids']), {}, class: "form-control" %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label "Highest level of education:" %>
-        <%= f.select :education, options_for_select(Choices['education']), {}, class: "form-control" %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label "Smoker?" %>
-        <%= f.select :smoking, options_for_select(Choices['is_smoker']), {}, class: "form-control" %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label "Drinker?" %>
-        <%= f.select :drinking, options_for_select(Choices['is_drinker']), {}, class: "form-control" %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label "Current Salary:" %>
-        <%= f.select :salary, options_for_select(Choices['salary_range']), {}, class: "form-control" %>
-      </div>
-    </div>
-
-    <div class="col-md-4">
-      <div class="form-group">
-        <%= f.label "Ethnicity:" %><br />
-        <%= f.collection_check_boxes :ethnicity_ids, Ethnicity.all, :id, :name do |b| %>
-        <div class="collection-check-box">
-          <%= b.check_box class: "single-checkbox" %>
-          <%= b.label %>
-        </div>
-        <% end %>
-      </div>
-      <div class="form-group">
-        <%= f.label "Religion:" %><br />
-        <%= f.collection_check_boxes :religion_ids, Religion.all, :id, :name do |c| %>
-        <div class="collection-check-box">
-          <%= c.check_box %>
-          <%= c.label %>
-        </div>
-        <% end %>
-      </div>
-    </div>
-
-    <div class="col-md-4">
-      <div class="form-group">
-        <%= f.label "Interests:" %><br />
-        <%= f.collection_check_boxes :interest_ids, Interest.all, :id, :name do |d| %>
-        <div class="collection-check-box">
-          <%= d.check_box %>
-          <%= d.label %>
-        </div>
-        <% end %>
-      </div>
-    </div>
-    <%= submit_tag("Set your LOVE preferences!", class: "btn btn-info") %>
+<div class="container">
+  <div class="row">
+    <% if flash[:notice] %>
+      <p class="text-success"><%= flash[:notice] %></p>
     <% end %>
+    <a href="/"><button type="button" class="btn btn-link">Skip for now</button></a>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4">
+      <h4>Preferences</h4>
+      <%= form_for @preferences do |f| %>
+        <div class="form-group">
+          <%= f.label "Minimum Height:" %>
+          <%= f.select :height_min, options_for_select([["4'8\"", 4.08], ["4'9\"", 4.09], ["4'10\"", 4.10], ["4'11\"", 4.11], ["5'0\"", 5.00], ["5'1\"", 5.01], ["5'2\"", 5.02], ["5'3\"", 5.03], ["5'4\"", 5.04], ["5'5\"", 5.05], ["5'6\"", 5.06], ["5'7\"", 5.07], ["5'8\"", 5.08], ["5'9\"", 5.09], ["5'10\"", 5.10], ["5'11\"", 5.11], ["6'0\"", 6.00], ["6'1\"", 6.01], ["6'2\"", 6.02], ["6'3\"", 6.03], ["6'4\"", 6.04], ["6'5\"", 6.05], ["6'6\"", 6.06], ["6'7\"", 6.07], ["6'8\"", 6.08], ["6'9\"", 6.09], ["6'10\"", 6.10]]), {}, class: "custom-select mb-2 mr-sm-2 mb-sm-0" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label "Maximum Height:" %>
+          <%= f.select :height_max, options_for_select([["4'8\"", 4.08], ["4'9\"", 4.09], ["4'10\"", 4.10], ["4'11\"", 4.11], ["5'0\"", 5.00], ["5'1\"", 5.01], ["5'2\"", 5.02], ["5'3\"", 5.03], ["5'4\"", 5.04], ["5'5\"", 5.05], ["5'6\"", 5.06], ["5'7\"", 5.07], ["5'8\"", 5.08], ["5'9\"", 5.09], ["5'10\"", 5.10], ["5'11\"", 5.11], ["6'0\"", 6.00], ["6'1\"", 6.01], ["6'2\"", 6.02], ["6'3\"", 6.03], ["6'4\"", 6.04], ["6'5\"", 6.05], ["6'6\"", 6.06], ["6'7\"", 6.07], ["6'8\"", 6.08], ["6'9\"", 6.09], ["6'10\"", 6.10]]), {}, class: "custom-select mb-2 mr-sm-2 mb-sm-0" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label "Minimum Age:" %>
+          <%= f.select :min_age, options_for_select((18..100).step(1).to_a.map{|s| ["#{s}", s]}), {}, class: "custom-select mb-2 mr-sm-2 mb-sm-0" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label "Maximum Age:" %>
+          <%= f.select :max_age, options_for_select((18..100).step(1).to_a.map{|s| ["#{s}", s]}), {}, class: "custom-select mb-2 mr-sm-2 mb-sm-0" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label "Gender:" %>
+          <%= f.select :gender, options_for_select(Choices['gender']), {}, class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label "Body Type:" %>
+          <%= f.select :body_type, options_for_select(Choices['body_type']), {}, class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label "Relationship Status:" %>
+          <%= f.select :status, options_for_select(Choices['relationship_status']), {}, class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label "Do you have kids?" %>
+          <%= f.select :has_kids, options_for_select(Choices['has_kids']), {}, class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label "Do you want kids?" %>
+          <%= f.select :wants_kids, options_for_select(Choices['wants_kids']), {}, class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label "Highest level of education:" %>
+          <%= f.select :education, options_for_select(Choices['education']), {}, class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label "Smoker?" %>
+          <%= f.select :smoking, options_for_select(Choices['is_smoker']), {}, class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label "Drinker?" %>
+          <%= f.select :drinking, options_for_select(Choices['is_drinker']), {}, class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label "Current Salary:" %>
+          <%= f.select :salary, options_for_select(Choices['salary_range']), {}, class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="form-group">
+          <%= f.label "Ethnicity:" %><br />
+          <%= f.collection_check_boxes :ethnicity_ids, Ethnicity.all, :id, :name do |b| %>
+          <div class="collection-check-box">
+            <%= b.check_box class: "single-checkbox" %>
+            <%= b.label %>
+          </div>
+          <% end %>
+        </div>
+        <div class="form-group">
+          <%= f.label "Religion:" %><br />
+          <%= f.collection_check_boxes :religion_ids, Religion.all, :id, :name do |c| %>
+          <div class="collection-check-box">
+            <%= c.check_box %>
+            <%= c.label %>
+          </div>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="form-group">
+          <%= f.label "Interests:" %><br />
+          <%= f.collection_check_boxes :interest_ids, Interest.all, :id, :name do |d| %>
+          <div class="collection-check-box">
+            <%= d.check_box %>
+            <%= d.label %>
+          </div>
+          <% end %>
+        </div>
+      </div>
+      <%= submit_tag("Set your LOVE preferences!", class: "btn btn-info") %>
+      <% end %>
+
+  </div>
 
 </div>

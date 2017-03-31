@@ -1,74 +1,77 @@
-<div class="row">
-  <% if flash[:notice] %>
-    <p class="text-success"><%= flash[:notice] %></p>
-  <% end %>
-  <!-- <a href="/" class="float-right">Return to Dashboard</a>  -->
-  <hr>
-</div>
+<div class="container">
+  <div class="row">
+    <% if flash[:notice] %>
+      <p class="text-success"><%= flash[:notice] %></p>
+    <% end %>
+    <!-- <a href="/" class="float-right">Return to Dashboard</a>  -->
+    <hr>
+  </div>
 
-<div class="row">
-  <div class="col-md-4">
-    <h4><%= "#{@user.first_name} #{@user.last_name}" %></h4>
-    <% if @profileimg %>
-      <%= image_tag(@profileimg.image_url(:profile), class: "profile-pic") %>
-    <%else%>
-      <%= image_tag("default.jpeg")%>
-    <%end%>
-  </br></br>
-    <% if @user.loggedin == true %>
-      <a href="#" class="btn btn-success btn-sm disabled" role="button" aria-disabled="true">Online</a>
-    <%else%>
-      <span id="online-status">Last logged on: <strong><%= distance_of_time_in_words(@user.updated_at, @time_now) %> ago</strong></span>
-    <%end%>
-    </br>
-    <% if @user.id == session[:user_id] %>
-      <a href="/profiles/<%= @user.id %>/edit">Edit Your Profile</a></br>
-      <a href="/preferences/<%= @user.id %>/edit">Edit Your Preferences</a></br>
-      <a href="/images/<%=session[:user_id]%>">Upload Pictures</a>
-    <% else %>
-      <%= link_to "Send a message", new_personal_message_path(receiver_id: @user.id) %></br>
-      <% if @likeyet.empty? %>
-        <a href="/likes/add/<%= @user.id %>"><button type="button" class="btn btn-primary btn-sm">Like <%=@user.first_name%></button></a>
+  <div class="row">
+    <div class="col-md-4">
+      <h4><%= "#{@user.first_name} #{@user.last_name}" %></h4>
+      <% if @profileimg %>
+        <%= image_tag(@profileimg.image_url(:profile), class: "profile-pic") %>
       <%else%>
-        <a href="/likes/remove/<%= @likeyet[0].id %>"><button type="button" class="btn btn-info btn-sm">Unlike</button></a>
+        <%= image_tag("default.jpeg")%>
       <%end%>
-    <% end %>
+    </br></br>
+      <% if @user.loggedin == true %>
+        <a href="#" class="btn btn-success btn-sm disabled" role="button" aria-disabled="true">Online</a>
+      <%else%>
+        <span id="online-status">Last logged on: <strong><%= distance_of_time_in_words(@user.updated_at, @time_now) %> ago</strong></span>
+      <%end%>
+      </br>
+      <% if @user.id == session[:user_id] %>
+        <a href="/profiles/<%= @user.id %>/edit">Edit Your Profile</a></br>
+        <a href="/preferences/<%= @user.id %>/edit">Edit Your Preferences</a></br>
+        <a href="/images/<%=session[:user_id]%>">Upload Pictures</a>
+      <% else %>
+        <%= link_to "Send a message", new_personal_message_path(receiver_id: @user.id) %></br>
+        <% if @likeyet.empty? %>
+          <a href="/likes/add/<%= @user.id %>"><button type="button" class="btn btn-primary btn-sm">Like <%=@user.first_name%></button></a>
+        <%else%>
+          <a href="/likes/remove/<%= @likeyet[0].id %>"><button type="button" class="btn btn-info btn-sm">Unlike</button></a>
+        <%end%>
+      <% end %>
+    </div>
+
+    <div class="col-md-4">
+      <span class="user-attr">Height:</span> <span class="profile-field"><%= @profile.height %></span>
+      <span class="user-attr">Body Type:</span> <span class="profile-field"><%= @profile.body_type%></span>
+      <span class="user-attr">Relationship Status:</span> <span class="profile-field"><%= @profile.status%></span>
+      <span class="user-attr">Have Kids:</span> <span class="profile-field"><%= @profile.has_kids%></span>
+      <span class="user-attr">Want Kids:</span> <span class="profile-field"><%= @profile.wants_kids%></span>
+      <span class="user-attr">Education:</span> <span class="profile-field"><%= @profile.education%></span>
+      <span class="user-attr">Smoker:</span> <span class="profile-field"><%= @profile.smoking%></span>
+      <span class="user-attr">Drinker:</span> <span class="profile-field"><%= @profile.drinking%></span>
+    </div>
+
+    <div class="col-md-4">
+      <span class="user-attr">Ethnicity:</span>
+      <% @profile.ethnicities.each do |e| %>
+        <span class="profile-field"> <%= image_tag("baby-blue-heart.png") %> <%= e.name %> </span>
+      <% end %>
+
+      <span class="user-attr">Religions:</span>
+      <% @profile.religions.each do |r| %>
+          <span class="profile-field"> <%= image_tag("baby-blue-heart.png") %> <%= r.name %> </span>
+      <% end %>
+      <span class="user-attr">Current Salary Range:</span>
+      <span class="profile-field"><%= @profile.salary%> </span>
+
+      <span class="user-attr">Interests: </span>
+      <% @profile.interests.each do |i| %>
+        <span class="profile-field"> <%= image_tag("baby-blue-heart.png") %> <%= i.name %> </span>
+      <% end %>
+      <span class="user-attr">Specifications:</span>
+      <span class="profile-field"><%= @profile.specifications%></span>
+      <span class="user-attr">Essay:</span>
+      <span class="profile-field"><%= @profile.essay%></span>
+    </div>
   </div>
 
-  <div class="col-md-4">
-    <span class="user-attr">Height:</span> <span class="profile-field"><%= @profile.height %></span>
-    <span class="user-attr">Body Type:</span> <span class="profile-field"><%= @profile.body_type%></span>
-    <span class="user-attr">Relationship Status:</span> <span class="profile-field"><%= @profile.status%></span>
-    <span class="user-attr">Have Kids:</span> <span class="profile-field"><%= @profile.has_kids%></span>
-    <span class="user-attr">Want Kids:</span> <span class="profile-field"><%= @profile.wants_kids%></span>
-    <span class="user-attr">Education:</span> <span class="profile-field"><%= @profile.education%></span>
-    <span class="user-attr">Smoker:</span> <span class="profile-field"><%= @profile.smoking%></span>
-    <span class="user-attr">Drinker:</span> <span class="profile-field"><%= @profile.drinking%></span>
+
   </div>
-
-  <div class="col-md-4">
-    <span class="user-attr">Ethnicity:</span>
-    <% @profile.ethnicities.each do |e| %>
-      <span class="profile-field"> <%= image_tag("baby-blue-heart.png") %> <%= e.name %> </span>
-    <% end %>
-
-    <span class="user-attr">Religions:</span>
-    <% @profile.religions.each do |r| %>
-        <span class="profile-field"> <%= image_tag("baby-blue-heart.png") %> <%= r.name %> </span>
-    <% end %>
-    <span class="user-attr">Current Salary Range:</span>
-    <span class="profile-field"><%= @profile.salary%> </span>
-
-    <span class="user-attr">Interests: </span>
-    <% @profile.interests.each do |i| %>
-      <span class="profile-field"> <%= image_tag("baby-blue-heart.png") %> <%= i.name %> </span>
-    <% end %>
-    <span class="user-attr">Specifications:</span>
-    <span class="profile-field"><%= @profile.specifications%></span>
-    <span class="user-attr">Essay:</span>
-    <span class="profile-field"><%= @profile.essay%></span>
-  </div>
-</div>
-
 
 </div>

@@ -1,50 +1,53 @@
-<div class="row">
-    <div class="col-md-4">
-      <h5>Search</h5>
+<div class="container">
+  <div class="row">
+      <div class="col-md-4">
+        <h5>Search</h5>
 
-      <%= form_tag("/search", method: "get") do %>
-        <div class="form-group">
-          <%= label_tag "I am looking for a: " %></br>
-          <%= select_tag :gender, options_for_select(Choices['gender']), class: "custom-select mb-2 mr-sm-2 mb-sm-0" %>
-        </div>
-        <%= label_tag "Between ages: " %>
-        <div class="form-inline">
-          <%= select_tag :min_age, options_for_select((18..80).step(1).to_a.map{|s| ["#{s}", s]}), class: "custom-select mb-2 mr-sm-2 mb-sm-0"  %> and
-          <%= select_tag :max_age, options_for_select((18..80).step(1).to_a.map{|s| ["#{s}", s]}), class: "custom-select mb-2 mr-sm-2 mb-sm-0"  %>
-        </div>
-        </br>
-        <%= label_tag "Within: " %>
-        <div class="form-inline">
-          <%= number_field_tag(:miles, nil, class: "form-control col-4 mb-1 mr-sm-1 mb-sm-0") %> miles of </br>
-          <%= text_field_tag(:zip_code, nil, class: "form-control col-4 mb-1 mr-sm-1 mb-sm-0") %>
-        </div>
-        </br>
-        <%= submit_tag "Search", :name => nil, class: "btn btn-info" %>
-      <% end %>
-    </div>
-
-    <div class="col-md-8">
-      <% if @secondary_search_results %>
-        <% if @secondary_search_results.first.nil? %>
-          <p class="text-danger">No results found.</p>
-        <% end %>
-      <% end %>
-
-      <% if @users %>
-        <% @users.each do |user| %>
-          <div class="user-info">
-            <strong><%= "#{user.first_name} #{user.last_name}" %></strong></br>
-            <%= user.zip_code %>
+        <%= form_tag("/search", method: "get") do %>
+          <div class="form-group">
+            <%= label_tag "I am looking for a: " %></br>
+            <%= select_tag :gender, options_for_select(Choices['gender']), class: "custom-select mb-2 mr-sm-2 mb-sm-0" %>
           </div>
-        <% end %>
-      <% elsif @secondary_search_results %>
-        <% @secondary_search_results.each do |user| %>
-          <div class="user-info">
-            <strong><%= "#{user.first_name} #{user.last_name}" %></strong></br>
-            <%= user.zip_code %>
+          <%= label_tag "Between ages: " %>
+          <div class="form-inline">
+            <%= select_tag :min_age, options_for_select((18..80).step(1).to_a.map{|s| ["#{s}", s]}), class: "custom-select mb-2 mr-sm-2 mb-sm-0"  %> and
+            <%= select_tag :max_age, options_for_select((18..80).step(1).to_a.map{|s| ["#{s}", s]}), class: "custom-select mb-2 mr-sm-2 mb-sm-0"  %>
           </div>
+          </br>
+          <%= label_tag "Within: " %>
+          <div class="form-inline">
+            <%= number_field_tag(:miles, nil, class: "form-control col-4 mb-1 mr-sm-1 mb-sm-0") %> miles of </br>
+            <%= text_field_tag(:zip_code, nil, class: "form-control col-4 mb-1 mr-sm-1 mb-sm-0") %>
+          </div>
+          </br>
+          <%= submit_tag "Search", :name => nil, class: "btn btn-info" %>
         <% end %>
-      <% end %>
+      </div>
 
-    </div>
+      <div class="col-md-8">
+        <% if @secondary_search_results %>
+          <% if @secondary_search_results.first.nil? %>
+            <p class="text-danger">No results found.</p>
+          <% end %>
+        <% end %>
+
+        <% if @users %>
+          <% @users.each do |user| %>
+            <div class="user-info">
+              <strong><%= "#{user.first_name} #{user.last_name}" %></strong></br>
+              <%= user.zip_code %>
+            </div>
+          <% end %>
+        <% elsif @secondary_search_results %>
+          <% @secondary_search_results.each do |user| %>
+            <div class="user-info">
+              <strong><%= "#{user.first_name} #{user.last_name}" %></strong></br>
+              <%= user.zip_code %>
+            </div>
+          <% end %>
+        <% end %>
+
+      </div>
+  </div>
+
 </div>
