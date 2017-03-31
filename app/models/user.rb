@@ -35,4 +35,26 @@ class User < ActiveRecord::Base
   validates :zip_code, format: { with: /\A\d{5}-\d{4}|\A\d{5}\z/, :message => "should be in the form 12345 or 12345-1234" }
   validates_date :birthday, :before => lambda { 18.years.ago }, :before_message => "must be at least 18 years old"
 
+  scope :gender, -> (gender) { where gender: gender }
+  scope :age_range, -> (min_age, max_age) {
+    where("birthday <=? AND birthday >=?", find_min_birth_year(min_age), find_max_birth_year(max_age))
+  }
+
+  def self.find_min_birth_year(min_age)
+    year = Date.today.year
+    year = year - min_age.to_i
+    Date.new(year)
+  end
+
+  def self.find_max_birth_year(max_age)
+    year = Date.today.year
+    year = year - max_age.to_i
+    Date.new(year)
+  end
+
+  def find_age
+    age = Date.today.year - self.birthday.year
+    age -= 1 if Date.today < self.birthday + age.years
+    return age
+  end
 end

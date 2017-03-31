@@ -4,7 +4,8 @@ class SessionsController < ApplicationController
   def index
     @picture = Picture.find_by(user_id:session[:user_id])
     @users = User.all
-    @match = Match.all
+    @match = Match.where(match_one_id:session[:user_id])
+    @match = @match.order(score: :desc)
   end
 
   def new

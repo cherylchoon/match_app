@@ -19,6 +19,11 @@ class ApplicationController < ActionController::Base
     redirect_to login_path unless session[:user_id]
   end
 
+  def find_age
+    age = Date.today.year - self.birthday.year
+    age -= 1 if Date.today < self.birthday + age.years
+    return age
+  end
 
 
   helper_method :current_user
