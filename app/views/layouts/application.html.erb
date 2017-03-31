@@ -66,14 +66,17 @@
   </nav>
 <% end %>
 
-    <div id="errors">
-      <% if flash[:errors] %>
-        <% flash[:errors].each do |e| %>
-          <p class="text-danger"><%= e %></p>
-        <% end %>
+<div class="row">
+  <div id="errors">
+    <% if flash[:errors] %>
+      <% flash[:errors].each do |e| %>
+        <p class="text-danger"><%= e %></p>
       <% end %>
-    </div>
-    <%= yield %>
+    <% end %>
+  </div>
+</div>
+
+<%= yield %>
 
 
 

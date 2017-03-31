@@ -79,7 +79,8 @@ class MatchesController < ApplicationController
   end
 
   def search
-    # @users = User.all
+    @all_users = User.all
+    @time_now = Time.now
     if params[:gender] || params[:min_age] || params[:max_age] || params[:miles] || params[:zip_code]
       @primary_search_results = User.gender(params[:gender]).age_range(params[:min_age], params[:max_age])
       @secondary_search_results = @primary_search_results.within(params[:miles], :origin => params[:zip_code]).all
