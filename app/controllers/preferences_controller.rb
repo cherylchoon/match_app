@@ -16,11 +16,11 @@ class PreferencesController < ApplicationController
   end
 
   def show
-    @preferences = Preference.find_by_user_id(params[:id])
+    @preferences = Preference.find_by_user_id(session[:user_id])
   end
 
   def edit
-    @preferences = Preference.find_by_user_id(params[:id])
+    @preferences = Preference.find_by_user_id(session[:user_id])
     unless @preferences
       flash[:notice] = "You need to set your preferences first!"
       redirect_to :back
@@ -28,7 +28,7 @@ class PreferencesController < ApplicationController
   end
 
   def update
-    @pref = Preference.find_by_user_id(params[:id])
+    @pref = Preference.find_by_user_id(session[:user_id])
     @pref.update(preference_params)
     if @pref.save
       flash[:notice] = "You have successfully upated your preferences!"

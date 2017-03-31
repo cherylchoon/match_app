@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
   has_secure_password
+  acts_as_mappable
+  
   has_many :match_ones, class_name: 'Match'
   has_many :match_twos, class_name: 'Match'
   has_many :personal_messages, dependent: :destroy
