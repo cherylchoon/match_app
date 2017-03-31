@@ -26,5 +26,20 @@ class ApplicationController < ActionController::Base
   end
 
 
-  helper_method :current_user
+    def height_to_string(height)
+      strheight = height.to_s
+      temp = ""
+      temp << strheight[0]
+      temp << "\'"
+      temp << strheight[2]
+      if strheight[3] == 0 || strheight[3].nil?
+        temp << "0"
+      else
+        temp << strheight[3]
+      end
+      temp << "\""
+      return temp
+    end
+
+  helper_method :current_user, :height_to_string
 end

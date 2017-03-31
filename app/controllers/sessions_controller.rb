@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
   def index
     @picture = Picture.find_by(user_id:session[:user_id])
     @users = User.all
-    @match = Match.where(match_one_id:session[:user_id]).order(score: :desc)
+    @match = Match.where("match_one_id=? AND is_match=?", session[:user_id], true).order(score: :desc)
     @time_now = Time.now
     # @match = @match.order(score: :desc)
   end

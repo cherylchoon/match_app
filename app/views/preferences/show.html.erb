@@ -2,7 +2,7 @@
 
 <hr>
 
-<h5>Height: From <%= @preferences.min_height%> to <%= @preferences.max_height%></h5>
+<h5>Height: From <%= height_to_string(@preferences.min_height%>) to height_to_string(<%= @preferences.max_height%>)</h5>
 <h5>Age: From <%= @preferences.min_age%> to <%= @preferences.max_age %></h5>
 <h5>Gender: <%= @preferences.gender %></h5>
 <h5>Body Type: <%= @preferences.body_type%></h5>
