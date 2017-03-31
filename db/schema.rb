@@ -211,6 +211,7 @@ ActiveRecord::Schema.define(version: 20170330225421) do
     t.datetime "updated_at",                     null: false
     t.boolean  "is_active",       default: true
     t.boolean  "loggedin"
+    t.boolean  "is_active",       default: true
     t.float    "lat"
     t.float    "lng"
   end

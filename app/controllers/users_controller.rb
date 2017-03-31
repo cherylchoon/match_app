@@ -44,6 +44,17 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
+    @user.update(user_params)
+    lat = @user[:zip_code].to_s.to_lat
+    @user.lat = lat
+    lng = @user[:zip_code].to_s.to_lon
+    @user.lng = lng
+    if @user.save
+      flash[:notice] = "User information successfully updated"
+    else
+      flash[:errors] = @user.errors.full_messages
+    end
+    redirect_to :back
   end
 
   def destroy

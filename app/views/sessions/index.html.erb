@@ -26,6 +26,7 @@
       <br>
       <span class="sidebar-header">Matches</span>
       <span class="sidebar-link"><a href="/matches" data-method="POST">Match Me</a></span>
+      <span class="sidebar-link"><a href="/matches/<%=session[:user_id]%>">Other Potential Matches</a></span>
       <br>
       <span class="sidebar-header">Messages</span>
       <span class="sidebar-link"><a href="/conversations">Inbox</a></span>
@@ -33,9 +34,7 @@
       <span class="sidebar-header">Interests</span>
       <span class="sidebar-link"><a href="#">Viewed Me</a></span>
       <span class="sidebar-link"><a href="#">Winks</a></span>
-      <span class="sidebar-link"><a href="#">Favorites</a></span>
       <span class="sidebar-link"><a href="#">Likes</a></span>
-      <span class="sidebar-link"><a href="#">Phonebook</a></span>
     </div>
 
   <div class="col-md-9">
@@ -50,19 +49,20 @@
         <% @users.each do |user|%>
           <% if user.id != session[:user_id] && user.id == match.match_two_id %>
             <div class="match-profile" align="center">
-              <a href="/users/<%=user.id%>"><%=user.first_name%></a><br>
-              Match score: <strong><%=match.score%>%</strong><br>
               <% if user.pictures.first %>
                 <img src="<%=user.pictures.first.image_url(:tiny)%>" height="150" width="150" alt="ppic.png">
               <% else %>
                 <%= image_tag("default.jpeg") %>
               <% end %>
-
-              <% if user.loggedin == true %><br>
+              <a href="/users/<%=user.id%>"><%=user.first_name%></a><br>
+              <%= user.zip_code.to_s.to_region %></br>
+              Match score: <strong><%=match.score%>%</strong>
+              <% if user.loggedin == true %>
                 <a href="#" class="btn btn-success btn-sm disabled" role="button" aria-disabled="true">Online</a>
                 <%= link_to "Chat live now!", "#", class:"start-conversation", "data-sid" => current_user.id, "data-rip" => user.id %>
               <%else%>
                 <br>
+                <%= link_to "Send a message", new_personal_message_path(receiver_id: user.id) %></br>
                 <span id="online-status">Last logged on: <strong><%= distance_of_time_in_words(user.updated_at, @time_now) %> ago</strong></span>
                 <br>
               <%end%>

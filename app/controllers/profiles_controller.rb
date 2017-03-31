@@ -38,10 +38,9 @@ class ProfilesController < ApplicationController
   end
 
   def edit
-    if @profile
-      @user = User.find(session[:user_id])
-      @profile = Profile.find_by_user_id(session[:user_id])
-    else
+    @user = User.find(session[:user_id])
+    @profile = Profile.find_by_user_id(session[:user_id])
+    if !@profile
       flash[:notice] = "Please create a profile."
       redirect_to new_profile_path
     end
