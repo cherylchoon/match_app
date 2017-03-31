@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   has_secure_password
   acts_as_mappable
-  
+
   has_many :match_ones, class_name: 'Match'
   has_many :match_twos, class_name: 'Match'
   has_many :personal_messages, dependent: :destroy
@@ -15,9 +15,13 @@ class User < ActiveRecord::Base
   has_many :user_liker, class_name: 'Like', foreign_key: 'liked_id'
   has_many :admirers, class_name:'User', through: "user_liker"
 
+
   has_one :preference, dependent: :destroy
   has_one :profile, dependent: :destroy
 
+  has_many :pictures
+
+  has_many :chats, :foreign_key => :sender_id
 
   # has_many :received_messages, class_name: 'PersonalMessage', foreign_key: 'receiver_id'
   # has_many :sent_messages, class_name: 'PersonalMessage', foreign_key: 'sender_id'
@@ -37,6 +41,10 @@ class User < ActiveRecord::Base
   scope :age_range, -> (min_age, max_age) {
     where("birthday <=? AND birthday >=?", find_min_birth_year(min_age), find_max_birth_year(max_age))
   }
+
+  def self.user_location
+    [lat, lng]
+  end
 
   def self.find_min_birth_year(min_age)
     year = Date.today.year

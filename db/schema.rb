@@ -11,7 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170330153339) do
+ActiveRecord::Schema.define(version: 20170330225421) do
+
+  create_table "chat_messages", force: :cascade do |t|
+    t.text     "body"
+    t.integer  "chat_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "chat_messages", ["chat_id"], name: "index_chat_messages_on_chat_id"
+  add_index "chat_messages", ["user_id"], name: "index_chat_messages_on_user_id"
+
+  create_table "chats", force: :cascade do |t|
+    t.integer  "sender_id"
+    t.integer  "recipient_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "chats", ["recipient_id"], name: "index_chats_on_recipient_id"
+  add_index "chats", ["sender_id"], name: "index_chats_on_sender_id"
 
   create_table "conversations", force: :cascade do |t|
     t.integer  "sender_id"
@@ -31,6 +52,11 @@ ActiveRecord::Schema.define(version: 20170330153339) do
   create_table "ethnicities_preferences", id: false, force: :cascade do |t|
     t.integer "ethnicity_id",  null: false
     t.integer "preference_id", null: false
+  end
+
+  create_table "ethnicities_profiles", id: false, force: :cascade do |t|
+    t.integer "ethnicity_id", null: false
+    t.integer "profile_id",   null: false
   end
 
   create_table "interests", force: :cascade do |t|
@@ -60,16 +86,28 @@ ActiveRecord::Schema.define(version: 20170330153339) do
   add_index "likes", ["liker_id"], name: "index_likes_on_liker_id"
 
   create_table "matches", force: :cascade do |t|
-    t.boolean  "is_match"
+    t.boolean  "is_match",     default: false
     t.integer  "match_one_id"
     t.integer  "match_two_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
     t.integer  "score"
   end
 
   add_index "matches", ["match_one_id"], name: "index_matches_on_match_one_id"
   add_index "matches", ["match_two_id"], name: "index_matches_on_match_two_id"
+
+  create_table "messages", force: :cascade do |t|
+    t.integer  "receiver_id"
+    t.integer  "sender_id"
+    t.text     "content"
+    t.string   "title"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "messages", ["receiver_id"], name: "index_messages_on_receiver_id"
+  add_index "messages", ["sender_id"], name: "index_messages_on_sender_id"
 
   create_table "personal_messages", force: :cascade do |t|
     t.text     "content"
@@ -183,8 +221,10 @@ ActiveRecord::Schema.define(version: 20170330153339) do
     t.date     "birthday"
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
-    t.boolean  "is_active",       default: true
     t.boolean  "loggedin"
+    t.float    "lat"
+    t.float    "lng"
+    t.boolean  "is_active",       default: true
   end
 
 end

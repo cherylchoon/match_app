@@ -2,14 +2,10 @@ class SessionsController < ApplicationController
   skip_before_action :require_login, only: [:new, :create]
 
   def index
-    @match = []
-    @mymatches = Match.where('match_one_id=?', session[:user_id])
-    @mymatches.each do |m|
-      if m.is_match
-        @match << m.match_two
-      end #end if
-    end #end @match loop
-    
+    @picture = Picture.find_by(user_id:session[:user_id])
+    @users = User.all
+    @match = Match.where(match_one_id:session[:user_id])
+    @match = @match.order(score: :desc)
   end
 
   def new
