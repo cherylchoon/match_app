@@ -29,7 +29,7 @@
       <span class="sidebar-link"><a href="/matches/<%=session[:user_id]%>">Other Potential Matches</a></span>
       <br>
       <span class="sidebar-header">Messages</span>
-      <span class="sidebar-link"><a href="/conversations">Inbox</a></span>
+      <span class="sidebar-link"><a href="/conversations">Inbox(<%= Conversation.where("sender_id =? OR receiver_id =?", current_user.id, current_user.id).count %>)</a></span>
       <br>
       <span class="sidebar-header">Interests</span>
       <span class="sidebar-link"><a href="#">Viewed Me</a></span>
