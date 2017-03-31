@@ -9,6 +9,7 @@ gem 'geokit-rails'
 gem 'area'
 gem 'private_pub'
 gem 'thin'
+gem 'faker'
 
 gem 'rails', '4.2.8'
 # Use sqlite3 as the database for Active Record

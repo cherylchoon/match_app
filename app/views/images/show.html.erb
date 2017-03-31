@@ -1,9 +1,6 @@
 <div class="col-md-4">
-<br>
-  <h3>Pictures of <%=@person.first_name%></h3>
-<br>
-  <% @images.each do |img|%>
-
+  <h4>Upload a new picture</h4>
+  <!-- <% @images.each do |img|%>
     <div class="row">
       <img src="<%=img.image_url(:thumb)%>" alt="logo.png">
     </div>
@@ -15,27 +12,17 @@
     <div class="row">
       <b><i><p align="center">"<%= img.caption %>"</p></i></b>
     </div>
-    <br>
-  <%end%>
+  <%end%> -->
 
 <% if session[:user_id] == @person.id %>
-
-  <% if flash[:message] %>
-    <% flash[:message].each do |msg| %>
-      <p><h3><i><%=msg%></h3></i></p>
-    <%end%>
-  <%end%>
-
-<br><br>
-
-  <p>Add a new image to your profile</p>
-
+  <% if flash[:notice] %>
+    <p class="text-danger"><%= flash[:notice] %></p>
+  <% end %>
   <form action="/images" method='post' enctype="multipart/form-data">
     <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
-    <input type="file" name="image" accept="image/*">
-    <input type="text" name="caption" placeholder="add caption">
-    <br>
-    <input type="submit" value='upload'>
+    <input type="file" name="image" accept="image/*" class="form-control"></br>
+    <!-- <input type="text" name="caption" placeholder="add caption"> -->
+    <input type="submit" value='Upload' class="btn btn-outline-info float-right">
   </form>
 
 <%end%>
