@@ -32,9 +32,7 @@ class UsersController < ApplicationController
 
 
     @user_location = [@user.lat,@user.lng]
-    puts "----User Location: #{@user_location}"
     @nearby_users = User.within(50, :origin => @user_location).all
-    puts "----Nearby Users: #{@nearby_users.first.first_name} #{@nearby_users.second.first_name}"
   end
 
   def edit

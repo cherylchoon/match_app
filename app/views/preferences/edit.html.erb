@@ -92,17 +92,6 @@
       </div>
     </div>
 
-    <div class="col-md-4">
-      <div class="form-group">
-        <%= f.label "Interests:" %><br />
-        <%= f.collection_check_boxes :interest_ids, Interest.all, :id, :name do |d| %>
-        <div class="collection-check-box">
-          <%= d.check_box %>
-          <%= d.label %>
-        </div>
-        <% end %>
-      </div>
-    </div>
     <%= submit_tag("Update your preferences", class: "btn btn-info") %>
     <% end %>
 </div>
