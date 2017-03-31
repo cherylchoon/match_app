@@ -1,1 +1,23 @@
+
+<p>Update your information</p>
+<form action="index.html" method="post">
+  <table>
+    <tr>
+      <td>First Name:</td><td><input type="text" name="first_name" value="<%=@user.first_name%>"></td>
+    </tr>
+    <tr>
+      <td>Last Name:</td><td>
+        <input type="text" name="last_name" value="<%=@user.last_name%>">
+      </td>
+    </tr>
+    <tr>
+      <td>email:</td><td><input type="text" name="email" value="<%=@user.email%>"></td>
+    </tr>
+  </table>
+</form>
+<br><br>
+
+
+
+
 <a href="/deactivate/<%= @user.id %>" data-method="put">Deactivate your account</a>
