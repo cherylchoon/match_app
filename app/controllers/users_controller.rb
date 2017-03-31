@@ -23,14 +23,13 @@ class UsersController < ApplicationController
   end
 
   def show
-    @image = Profile.find_by(user_id: params[:id]).image
+    # @images = Picture.where(user_id:params[:id])
+    # @images = Picture.all
     @user = User.find(params[:id])
     @profile = Profile.find_by(user_id: params[:id])
-    @images = Picture.all
     @profileimg = Picture.find_by(user_id:params[:id])
     @likeyet = Like.where(liker_id:session[:user_id], liked_id:params[:id])
-
-
+    @time_now = Time.now
     @user_location = [@user.lat,@user.lng]
     @nearby_users = User.within(50, :origin => @user_location).all
   end

@@ -12,18 +12,19 @@ class ImagesController < ApplicationController
     newimage = Picture.new(user_id:session[:user_id], image:params[:image], caption:params[:caption])
     if newimage.valid?
       if newimage.image.nil?
-        flash[:message] = ["upload value was nil :-("]
+        flash[:notice] = "Image type invalid"
       else
       newimage.save
+      redirect_to user_path(current_user.id)
       end
     else
-      flash[:message] = ["upload didn't work :-("]
+      flash[:notice] = "Upload failed"
     end
     redirect_to :back
   end
 
   def destroy
-    img = Picture.find(params[:id]).destroy
+    Picture.find(params[:id]).destroy
     redirect_to :back
   end
 

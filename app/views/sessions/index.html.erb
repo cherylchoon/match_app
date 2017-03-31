@@ -1,90 +1,76 @@
-<div class="row">
-  <div class="col-md-3">
-    <span class="sidebar-header">My Profile</span>
-
-
-    <% if @picture %>
-      <img src="<%=@picture.image_url(:profile)%>" alt="ppic.png">
-    <% else %>
-    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-          Add a picture to your profile!
-        </a>
-      <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne">
-      <div class="card-block">
-        <form action="/images" method='post' enctype="multipart/form-data">
-          <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
-          <input type="file" name="image" accept="image/*">
-          <input type="text" name="caption" placeholder="add caption">
-          <input type="submit" value='upload'>
-        </form>
-      </div>
-     </div>
-    <%end%>
-    <span class="sidebar-link">Views count</span>
-    <span class="sidebar-link"><a href="/profiles/<%=session[:user_id]%>/edit">Edit Profile</a></span>
-    <span class="sidebar-link"><a href="/preferences/<%=session[:user_id]%>/edit">Edit Preferences</a></span>
-    <br>
-    <span class="sidebar-header">Matches</span>
-    <span class="sidebar-link"><a href="#">Daily Matches</a></span>
-    <span class="sidebar-link"><a href="/matches" data-method="POST">Match Me</a></span>
-    <br>
-    <span class="sidebar-header">Messages</span>
-    <span class="sidebar-link"><a href="/conversations">Inbox</a></span>
-    <br>
-    <span class="sidebar-header">Interests</span>
-    <span class="sidebar-link"><a href="#">Viewed Me</a></span>
-    <span class="sidebar-link"><a href="#">Winks</a></span>
-    <span class="sidebar-link"><a href="#">Favorites</a></span>
-    <span class="sidebar-link"><a href="#">Likes</a></span>
-    <span class="sidebar-link"><a href="#">Phonebook</a></span>
-  </div>
-
-
-  <div class="col-md-5">
-
-  <h3>Your matches</h3>
-    <div class="container">
-      <div class="row">
-        <% if @match.empty? %>
-          <br><br><br><br><br>
-          <center>
-          <i><h3>No matches, try broadening your search preferences</h3></i>
-          <%= image_tag("sad-face", alt: "sad-face logo")%>
-
-          </center>
-        <%end%>
-        <%@match.each do |match|%>
-        <% @users.each do |user|%>
-        <% if user.id != session[:user_id] && user.id == match.match_two_id %>
-          <div class="col-5" style="padding: 2px; margin: 2px; outline: 1px solid gray;" align="center">
-            <a href="/users/<%=user.id%>"><%=user.first_name%></a><br>
-            <b><i>Match score: <%=match.score%></i></b><br>
-            <% if user.pictures.first %>
-              <img src="<%=user.pictures.first.image_url(:tiny)%>" alt="ppic.png">
-            <% else %>
-              <br>No picture yet <br>
-            <% end %>
-            <% if user.loggedin == true %><br>
-              <%=user.first_name%> is online now!<br>
-              <%= link_to "Chat live now!", "#", class:"start-conversation",
-              "data-sid" => current_user.id, "data-rip" => user.id %>
-            <%else%>
-              <br>
-              <%=user.first_name%> was last logged in on <%=user.updated_at%>
-              <br>
-            <%end%>
-          </div>
-        <%end%>
-        <%end%>
-        <%end%>
-
-      </div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <span class="sidebar-header">My Profile</span>
+      </br>
+      <% if @picture %>
+        <img src="<%=@picture.image_url(:profile)%>" alt="ppic.png" height="175" width="175">
+      <% else %>
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+            Upload a profile picture
+          </a>
+        <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+        <div class="card-block">
+          <form action="/images" method='post' enctype="multipart/form-data">
+            <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+            <input type="file" name="image" accept="image/*" class="form-control"></br>
+            <!-- <input type="text" name="caption" placeholder="add caption"> -->
+            <input type="submit" value='Upload' class="btn btn-outline-info btn-sm float-right">
+          </form>
+        </div>
+       </div>
+      <%end%>
+      <!-- <span class="sidebar-link">Views count</span> -->
+      <span class="sidebar-link"><a href="/profiles/<%=session[:user_id]%>/edit">Edit Profile</a></span>
+      <span class="sidebar-link"><a href="/preferences/<%=session[:user_id]%>/edit">Edit Preferences</a></span>
+      <br>
+      <span class="sidebar-header">Matches</span>
+      <span class="sidebar-link"><a href="/matches" data-method="POST">Match Me</a></span>
+      <br>
+      <span class="sidebar-header">Messages</span>
+      <span class="sidebar-link"><a href="/conversations">Inbox</a></span>
+      <br>
+      <span class="sidebar-header">Interests</span>
+      <span class="sidebar-link"><a href="#">Viewed Me</a></span>
+      <span class="sidebar-link"><a href="#">Winks</a></span>
+      <span class="sidebar-link"><a href="#">Favorites</a></span>
+      <span class="sidebar-link"><a href="#">Likes</a></span>
+      <span class="sidebar-link"><a href="#">Phonebook</a></span>
     </div>
 
+  <div class="col-md-9">
+    <h4>Your matches</h4>
+      <% if @match.empty? %>
+      <center>
+        <i><h5>No matches, try broadening your search preferences</h5></i>
+        <%= image_tag("sad-face", alt: "sad-face logo")%>
+      </center>
+      <%end%>
+      <%@match.each do |match|%>
+        <% @users.each do |user|%>
+          <% if user.id != session[:user_id] && user.id == match.match_two_id %>
+            <div class="match-profile" align="center">
+              <a href="/users/<%=user.id%>"><%=user.first_name%></a><br>
+              Match score: <strong><%=match.score%>%</strong><br>
+              <% if user.pictures.first %>
+                <img src="<%=user.pictures.first.image_url(:tiny)%>" height="150" width="150" alt="ppic.png">
+              <% else %>
+                <%= image_tag("default.jpeg") %>
+              <% end %>
+
+              <% if user.loggedin == true %><br>
+                <a href="#" class="btn btn-success btn-sm disabled" role="button" aria-disabled="true">Online</a>
+                <%= link_to "Chat live now!", "#", class:"start-conversation", "data-sid" => current_user.id, "data-rip" => user.id %>
+              <%else%>
+                <br>
+                <span id="online-status">Last logged on: <strong><%= distance_of_time_in_words(user.updated_at, @time_now) %> ago</strong></span>
+                <br>
+              <%end%>
+            </div>
+          <%end%>
+        <%end%>
+      <%end%>
+
+    </div>
   </div>
-
-  <div class="col-md-4">
-
-  </div>
-
 </div>
