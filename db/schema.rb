@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170330153339) do
+ActiveRecord::Schema.define(version: 20170330225421) do
 
   create_table "chat_messages", force: :cascade do |t|
     t.text     "body"
@@ -54,6 +54,11 @@ ActiveRecord::Schema.define(version: 20170330153339) do
     t.integer "preference_id", null: false
   end
 
+  create_table "ethnicities_profiles", id: false, force: :cascade do |t|
+    t.integer "ethnicity_id", null: false
+    t.integer "profile_id",   null: false
+  end
+
   create_table "interests", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -91,6 +96,18 @@ ActiveRecord::Schema.define(version: 20170330153339) do
 
   add_index "matches", ["match_one_id"], name: "index_matches_on_match_one_id"
   add_index "matches", ["match_two_id"], name: "index_matches_on_match_two_id"
+
+  create_table "messages", force: :cascade do |t|
+    t.integer  "receiver_id"
+    t.integer  "sender_id"
+    t.text     "content"
+    t.string   "title"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "messages", ["receiver_id"], name: "index_messages_on_receiver_id"
+  add_index "messages", ["sender_id"], name: "index_messages_on_sender_id"
 
   create_table "personal_messages", force: :cascade do |t|
     t.text     "content"
@@ -205,6 +222,8 @@ ActiveRecord::Schema.define(version: 20170330153339) do
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
     t.boolean  "loggedin"
+    t.float    "lat"
+    t.float    "lng"
     t.boolean  "is_active",       default: true
   end
 

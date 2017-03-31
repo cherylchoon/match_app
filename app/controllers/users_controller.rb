@@ -7,6 +7,10 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    lat = params[:user][:zip_code].to_s.to_lat
+    @user.lat = lat
+    lng =  params[:user][:zip_code].to_s.to_lon
+    @user.lng = lng
     if @user.save
       flash[:notice] = "You have registered successfully, please fill in the questionaire."
       session[:user_id] = @user.id
@@ -20,12 +24,17 @@ class UsersController < ApplicationController
 
   def show
     @image = Profile.find_by(user_id: params[:id]).image
-    puts "------#{@image}"
     @user = User.find(params[:id])
     @profile = Profile.find_by(user_id: params[:id])
     @images = Picture.all
     @profileimg = Picture.find_by(user_id:params[:id])
     @likeyet = Like.where(liker_id:session[:user_id], liked_id:params[:id])
+
+
+    @user_location = [@user.lat,@user.lng]
+    puts "----User Location: #{@user_location}"
+    @nearby_users = User.within(50, :origin => @user_location).all
+    puts "----Nearby Users: #{@nearby_users.first.first_name} #{@nearby_users.second.first_name}"
   end
 
   def edit

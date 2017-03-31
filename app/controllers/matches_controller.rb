@@ -68,13 +68,14 @@ class MatchesController < ApplicationController
   end
 
   def search
-    @users = nil
-    if params[:gender] || params[:min_age] || params[:max_age]
-      @search_results = User.gender(params[:gender]).age_range(params[:min_age], params[:max_age])
-      if @search_results.first.nil?
-        puts "----#{@search_results.first.nil?}"
+    # @users = User.all
+    if params[:gender] || params[:min_age] || params[:max_age] || params[:miles] || params[:zip_code]
+      @primary_search_results = User.gender(params[:gender]).age_range(params[:min_age], params[:max_age])
+      @secondary_search_results = @primary_search_results.within(params[:miles], :origin => params[:zip_code]).all
+      if @secondary_search_results.first.nil?
+
       else
-        puts "----#{@search_results.first.nil?}"
+        puts "----#{@secondary_search_results.first.nil?}"
       end
       # redirect_to search_path
     end

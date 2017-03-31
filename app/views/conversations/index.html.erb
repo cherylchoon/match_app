@@ -2,9 +2,9 @@
   <div id="inbox">
     <h4>Your Inbox</h4>
     <%if @conversations.nil? %>
-     <%= render @conversations %>
-    <% else %>
       <p>Your inbox is empty!</p>
+    <% else %>
+      <%= render @conversations %>
     <% end %>
   </div>
 </div>

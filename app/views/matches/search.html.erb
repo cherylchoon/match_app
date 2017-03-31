@@ -1,10 +1,5 @@
 <div class="row">
     <div class="col-md-4">
-      <% if @search_results %>
-        <% if @search_results.first.nil? %>
-          <p class="text-danger">No results.</p>
-        <% end %>
-      <% end %>
       <h5>Search</h5>
 
       <%= form_tag("/search", method: "get") do %>
@@ -20,8 +15,8 @@
         </br>
         <%= label_tag "Within: " %>
         <div class="form-inline">
-          <%= number_field_tag :miles, in: 1..2000, class: "form-control mb-1 mr-sm-1 mb-sm-0"%> of
-          <%= number_field_tag :zip_code, min: 00001, max: 99999, class: "form-control mb-1 mr-sm-1 mb-sm-0" %>
+          <%= number_field_tag(:miles, nil, class: "form-control col-4 mb-1 mr-sm-1 mb-sm-0") %> miles of </br>
+          <%= text_field_tag(:zip_code, nil, class: "form-control col-4 mb-1 mr-sm-1 mb-sm-0") %>
         </div>
         </br>
         <%= submit_tag "Search", :name => nil, class: "btn btn-info" %>
@@ -29,6 +24,12 @@
     </div>
 
     <div class="col-md-8">
+      <% if @secondary_search_results %>
+        <% if @secondary_search_results.first.nil? %>
+          <p class="text-danger">No results found.</p>
+        <% end %>
+      <% end %>
+
       <% if @users %>
         <% @users.each do |user| %>
           <div class="user-info">
@@ -36,8 +37,8 @@
             <%= user.zip_code %>
           </div>
         <% end %>
-      <% elsif @search_results %>
-        <% @search_results.each do |user| %>
+      <% elsif @secondary_search_results %>
+        <% @secondary_search_results.each do |user| %>
           <div class="user-info">
             <strong><%= "#{user.first_name} #{user.last_name}" %></strong></br>
             <%= user.zip_code %>

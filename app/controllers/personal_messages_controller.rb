@@ -7,7 +7,12 @@ class PersonalMessagesController < ApplicationController
   end
 
   def create
-    @conversation = Conversation.create(sender_id: current_user.id, receiver_id: @receiver.id)
+    puts "-----------#{params[:conversation_id]}"
+    if params[:conversation_id]
+      @conversation = Conversation.find(params[:conversation_id])
+    else
+      @conversation = Conversation.create(sender_id: current_user.id, receiver_id: @receiver.id)
+    end
     @personal_message = PersonalMessage.new(personal_message_params)
     @personal_message.user_id = current_user.id
     @personal_message.conversation_id = @conversation.id
